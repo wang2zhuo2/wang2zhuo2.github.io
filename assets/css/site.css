@@ -301,6 +301,9 @@ body{margin:0;overflow-x:hidden;font-family:Arial,Helvetica,sans-serif}
 .pbg-d{position:fixed;inset:0}
 @media (max-width:767px){.D{display:none}.M{display:block}}
 .hdr,.pg,.ftr{position:relative;width:100%;display:block}
+.pg.flow{display:flow-root}
+.pg.flow .fl{position:relative!important;top:auto!important;display:block}
+.pg.flow .fg{position:relative}
 .hdr{z-index:50}
 .D .hdr{position:sticky;top:0;transition:transform .3s ease}
 .D .hdr.hide{transform:translateY(-100%)}
@@ -453,12 +456,12 @@ a.sv{display:block}
 .t21{font-weight:600}
 .t22{font-family:"Poppins",sans-serif;font-weight:400;font-size:18px;line-height:29.7px;color:rgb(51, 51, 51);text-align:left}
 .t23{text-decoration-line:underline;text-decoration-color:rgb(51, 51, 51);text-decoration-style:solid}
-.t24{font-family:"Poppins",sans-serif;font-weight:600;font-size:26px;line-height:33.8px;color:rgb(51, 51, 51);text-align:left}
-.t25{font-family:"Poppins",sans-serif;font-weight:400;font-size:13px;line-height:21.45px;color:rgb(102, 102, 102);text-align:left}
-.t26{font-family:"Poppins",sans-serif;font-weight:400;font-size:14px;line-height:23.1px;color:rgb(85, 85, 85);text-align:left}
-.t27{font-family:"Poppins",sans-serif;font-weight:600;font-size:22px;line-height:28.6px;color:rgb(51, 51, 51);text-align:left}
-.t28{font-family:"Poppins",sans-serif;font-weight:400;font-size:14px;line-height:23.1px;color:rgb(51, 51, 51);text-align:left;margin-bottom:16px}
-.t29{font-family:"Poppins",sans-serif;font-weight:400;font-size:14px;line-height:23.1px;color:rgb(51, 51, 51);text-align:left}
+.t24{font-family:"Poppins",sans-serif;font-weight:600;font-size:21px;line-height:27.3px;color:rgb(51, 51, 51);text-align:left}
+.t25{font-family:"Poppins",sans-serif;font-weight:400;font-size:11px;line-height:18.15px;color:rgb(102, 102, 102);text-align:left}
+.t26{font-family:"Poppins",sans-serif;font-weight:400;font-size:12px;line-height:19.8px;color:rgb(85, 85, 85);text-align:left}
+.t27{font-family:"Poppins",sans-serif;font-weight:600;font-size:17px;line-height:22.1px;color:rgb(51, 51, 51);text-align:left}
+.t28{font-family:"Poppins",sans-serif;font-weight:400;font-size:11.5px;line-height:18.98px;color:rgb(51, 51, 51);text-align:left;margin-bottom:13.14px}
+.t29{font-family:"Poppins",sans-serif;font-weight:400;font-size:11.5px;line-height:18.98px;color:rgb(51, 51, 51);text-align:left}
 .t2a{font-family:"Barlow",sans-serif;font-weight:300;font-size:20px}
 .t2b{color:rgb(28, 30, 32)}
 .t2c{font-family:"Poppins",sans-serif;font-weight:700}
@@ -518,21 +521,19 @@ a.sv{display:block}
 .t62{font-family:"Poppins",sans-serif;font-weight:400;font-size:14px;line-height:23.8px;color:rgb(90, 90, 90);text-align:left;margin-bottom:14px}
 .t63{font-family:"Poppins",sans-serif;font-weight:600;font-size:21px;line-height:27.3px;letter-spacing:-0.21px;color:rgb(28, 30, 32);text-align:left}
 .t64{font-family:"Poppins",sans-serif;font-weight:600;font-size:14px;line-height:21px;letter-spacing:2.24px;color:rgb(193, 138, 87);text-align:left}
-.t65{font-family:"Poppins",sans-serif;font-weight:600;font-size:12px;font-style:normal;line-height:normal;letter-spacing:3px;color:rgb(210, 160, 110);text-align:center;white-space:nowrap;list-style-type:disc}
-.t66{text-decoration-line:underline;text-decoration-color:rgb(90, 90, 90);text-decoration-style:solid}
-.t67{color:rgb(51, 51, 51)}
-.t68{font-family:"Poppins",sans-serif;font-weight:600;font-size:15px;line-height:21px;color:rgb(28, 30, 32);text-align:center}
-.t69{font-family:"Avantt","Poppins",sans-serif;font-weight:600;font-size:80px}
-.t6a{color:rgb(222, 222, 222)}
-.t6b{font-family:"GT Walsheim Pro","Poppins",sans-serif;font-weight:300}
-.t6c{font-family:"GT Walsheim Pro","Poppins",sans-serif;font-weight:400}
-.t6d{color:rgb(210, 160, 110)}
-.t6e{color:rgb(69, 69, 69)}
-.t6f{color:rgb(113, 112, 112)}
-.t70{font-family:"Avantt","Poppins",sans-serif;font-weight:600;font-size:28px;text-align:left}
-.t71{font-family:"Barlow",sans-serif;font-weight:300;font-size:18px;text-align:left}
-.t72{font-family:"Barlow",sans-serif;font-weight:300;font-size:20px;text-align:left}
-.t73{font-family:"Barlow",sans-serif;font-weight:300;font-size:12px;text-align:left}
-.t74{font-family:"Poppins",sans-serif;font-weight:400;font-size:17px;line-height:28.9px;color:rgb(90, 90, 90);text-align:left;margin-bottom:6px}
-.t75{font-family:"Poppins",sans-serif;font-weight:400;font-size:14px;line-height:23.8px;color:rgb(90, 90, 90);text-align:left;margin-bottom:6px}
-.t76{font-family:"Poppins",sans-serif;font-weight:600;font-size:15px;font-style:normal;line-height:normal;letter-spacing:3.75px;color:rgb(210, 160, 110);text-align:center;white-space:nowrap;list-style-type:disc}
+.t65{text-decoration-line:underline;text-decoration-color:rgb(90, 90, 90);text-decoration-style:solid}
+.t66{color:rgb(51, 51, 51)}
+.t67{font-family:"Poppins",sans-serif;font-weight:600;font-size:15px;line-height:21px;color:rgb(28, 30, 32);text-align:center}
+.t68{font-family:"Avantt","Poppins",sans-serif;font-weight:600;font-size:80px}
+.t69{color:rgb(222, 222, 222)}
+.t6a{font-family:"GT Walsheim Pro","Poppins",sans-serif;font-weight:300}
+.t6b{font-family:"GT Walsheim Pro","Poppins",sans-serif;font-weight:400}
+.t6c{color:rgb(210, 160, 110)}
+.t6d{color:rgb(69, 69, 69)}
+.t6e{color:rgb(113, 112, 112)}
+.t6f{font-family:"Avantt","Poppins",sans-serif;font-weight:600;font-size:28px;text-align:left}
+.t70{font-family:"Barlow",sans-serif;font-weight:300;font-size:18px;text-align:left}
+.t71{font-family:"Barlow",sans-serif;font-weight:300;font-size:20px;text-align:left}
+.t72{font-family:"Barlow",sans-serif;font-weight:300;font-size:12px;text-align:left}
+.t73{font-family:"Poppins",sans-serif;font-weight:400;font-size:17px;line-height:28.9px;color:rgb(90, 90, 90);text-align:left;margin-bottom:6px}
+.t74{font-family:"Poppins",sans-serif;font-weight:400;font-size:14px;line-height:23.8px;color:rgb(90, 90, 90);text-align:left;margin-bottom:6px}
