@@ -4,13 +4,19 @@
   var tree = function () { return d.querySelector(mobile() ? '.M' : '.D'); };
 
   // In-page anchors (#top, #bottom and chapter anchors) scroll within the visible layout.
+  // Chapter anchors leave room above the heading (and for the desktop header, which may reappear).
+  function chapterOffset() {
+    var zd = parseFloat(getComputedStyle(d.documentElement).getPropertyValue('--zd')) || 1;
+    return mobile() ? 20 : 96 * zd;
+  }
   function go(slug, smooth) {
     var b = smooth ? 'smooth' : 'auto';
     if (slug === 'top') { w.scrollTo({top: 0, behavior: b}); return true; }
     if (slug === 'bottom') { w.scrollTo({top: d.documentElement.scrollHeight, behavior: b}); return true; }
     var t = tree() && tree().querySelector('[data-a="' + slug + '"]');
     if (!t) return false;
-    w.scrollTo({top: w.scrollY + t.getBoundingClientRect().top, behavior: b});
+    var off = t.classList.contains('toc-a') ? chapterOffset() : 0;
+    w.scrollTo({top: Math.max(0, w.scrollY + t.getBoundingClientRect().top - off), behavior: b});
     return true;
   }
 
@@ -91,6 +97,8 @@
     if (href.charAt(0) === '#' && href.length > 1 && go(href.slice(1), true)) {
       e.preventDefault();
       var mm = a.closest('.mm'); if (mm) toggleMenu(false);
+      if (a.closest('.toc-sheet')) toggleSheet(false);
+      if (a.closest('.toc') && history.replaceState) history.replaceState(null, '', href);
     }
   });
   if (location.hash) w.addEventListener('load', function () { go(location.hash.slice(1), false); });
@@ -153,21 +161,93 @@
     upd();
   });
 
-  // Chapter menus (wide screens): highlight the section currently in view.
-  var am = d.querySelector('.am');
-  if (am) {
-    var links = Array.prototype.slice.call(am.querySelectorAll('a'));
-    var mark = function () {
-      if (getComputedStyle(am).display === 'none') return;
-      var cur = null, mid = 60;
-      links.forEach(function (l) {
-        var t = d.querySelector('.D [data-a="' + l.getAttribute('href').slice(1) + '"]');
-        if (t && t.getBoundingClientRect().top <= mid) cur = l;
+  // Contents navigation (project pages).
+  var toc = d.querySelector('.toc'), fab = d.querySelector('.toc-fab'), sheet = d.querySelector('.toc-sheet');
+  function toggleSheet(open) {
+    if (!sheet) return;
+    sheet.hidden = !open;
+    if (fab) { fab.setAttribute('aria-expanded', open ? 'true' : 'false'); fab.classList.toggle('open', open); }
+  }
+  if (toc) {
+    var card = toc.querySelector('.toc-card'), rail = toc.querySelector('.toc-rail');
+    var keys = [], parentOf = {}, anchors = {}, found = [], current, layoutKey;
+    (function () {
+      var l1 = null;
+      card.querySelectorAll('li').forEach(function (li) {
+        var k = li.querySelector('a').dataset.k;
+        keys.push(k);
+        if (li.classList.contains('l1')) l1 = k; else parentOf[k] = l1;
       });
-      links.forEach(function (l) { l.classList.toggle('on', l === cur); });
+    })();
+    var collect = function () {
+      var t = tree();
+      anchors = {}; found = [];
+      keys.forEach(function (k) {
+        var el = t && t.querySelector('.toc-a[data-a="' + k + '"]');
+        if (el) { anchors[k] = el; found.push(k); }
+      });
+      d.querySelectorAll('.toc [data-k], .toc-sheet [data-k]').forEach(function (el) {
+        var na = !anchors[el.dataset.k];
+        el.classList.toggle('na', na);
+        if (el.parentElement.tagName === 'LI') el.parentElement.classList.toggle('na', na);
+      });
     };
+    var mark = function () {
+      // Current chapter: the last heading that has reached the top band; at the very bottom of the page,
+      // the last heading on screen (short final chapters can never scroll up to the top).
+      var k = null, lim = chapterOffset() + 40;
+      found.forEach(function (key) { if (anchors[key].getBoundingClientRect().top <= lim) k = key; });
+      if (Math.ceil(w.scrollY + w.innerHeight) >= d.documentElement.scrollHeight - 2) {
+        found.forEach(function (key) { if (anchors[key].getBoundingClientRect().top < w.innerHeight * 0.6) k = key; });
+      }
+      if (k !== current) {
+        current = k;
+        d.querySelectorAll('.toc [data-k], .toc-sheet [data-k]').forEach(function (el) {
+          el.classList.toggle('on', el.dataset.k === k);
+          el.classList.toggle('in', !!k && parentOf[k] === el.dataset.k);
+        });
+      }
+      var first = found.length ? anchors[found[0]].getBoundingClientRect().top : Infinity;
+      var ftr = tree() && tree().querySelector('.ftr');
+      var show = first < w.innerHeight * 0.85 && !(ftr && ftr.getBoundingClientRect().top < w.innerHeight - 40);
+      toc.classList.toggle('show', show);
+      if (fab) fab.classList.toggle('show', show);
+    };
+    var place = function () {
+      if (mobile()) return;
+      var cw = d.documentElement.clientWidth;
+      var contentRight = Math.min(cw * 1391 / 1440, cw / 2 + 671);
+      var wide = cw - contentRight >= card.offsetWidth + 56;
+      toc.classList.toggle('wide', wide);
+      if (wide) {
+        toc.style.left = Math.round(contentRight + 28) + 'px';
+        toc.style.right = 'auto';
+      } else {
+        var up = d.querySelector('.D .fxl a[href="#top"]');
+        var ur = up && up.getBoundingClientRect();
+        var cx = ur && ur.width ? ur.left + ur.width / 2 : cw - 25;
+        toc.style.left = 'auto';
+        toc.style.right = Math.max(4, Math.round(cw - cx - rail.offsetWidth / 2)) + 'px';
+      }
+    };
+    var refresh = function () {
+      var lk = mobile() ? 'm' : 'd';
+      if (lk !== layoutKey) { layoutKey = lk; collect(); current = undefined; }
+      place();
+      mark();
+    };
+    // Touch-screen laptops have no hover: tapping the rail toggles the card; following a link closes it.
+    rail.addEventListener('click', function () { toc.classList.toggle('peek'); });
+    card.addEventListener('click', function (e) { if (e.target.closest('a')) { toc.classList.remove('peek'); if (d.activeElement && d.activeElement.blur) d.activeElement.blur(); } });
+    d.addEventListener('click', function (e) { if (!e.target.closest('.toc')) toc.classList.remove('peek'); });
     w.addEventListener('scroll', mark, {passive: true});
-    w.addEventListener('resize', mark);
-    mark();
+    w.addEventListener('resize', refresh);
+    w.addEventListener('load', refresh);
+    refresh();
+  }
+  if (fab && sheet) {
+    fab.addEventListener('click', function () { toggleSheet(sheet.hidden); });
+    sheet.querySelector('.toc-sheet-ov').addEventListener('click', function () { toggleSheet(false); });
+    d.addEventListener('keydown', function (e) { if (e.key === 'Escape' && !sheet.hidden) toggleSheet(false); });
   }
 })();

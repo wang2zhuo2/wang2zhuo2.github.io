@@ -323,9 +323,54 @@ a.sv{display:block}
 .mn .mi span{position:absolute;display:block;white-space:nowrap;transition:color .2s ease}
 .mn .mi[style*="--hc"]:hover span{color:var(--hc)!important}
 .anc{position:absolute;left:0;width:1px;height:1px;pointer-events:none}
-.am{display:none;position:fixed;z-index:53}
-.am a{position:absolute;left:0;right:0;display:block;text-decoration:none;white-space:nowrap;transition:color .2s}
-.am a.on{color:rgb(210,160,110)!important}
+/* Contents navigation (project pages). Desktop: a tick rail in the right margin that expands on hover,
+   or a permanently open card when the margin is wide enough. Mobile: a floating button with a bottom sheet. */
+.toc{--acc:rgb(193,138,87);position:fixed;top:50%;right:11px;z-index:58;transform:translateY(-50%);opacity:0;visibility:hidden;
+  transition:opacity .3s ease,visibility .3s;font-family:"Poppins",sans-serif}
+.toc.show{opacity:1;visibility:visible}
+.toc-rail{display:flex;flex-direction:column;align-items:flex-end;gap:7px;padding:11px 8px;border-radius:12px;
+  background:rgba(255,255,255,.78);-webkit-backdrop-filter:blur(10px) saturate(1.4);backdrop-filter:blur(10px) saturate(1.4);
+  box-shadow:0 2px 12px rgba(0,0,0,.08),0 0 0 1px rgba(0,0,0,.05);cursor:pointer}
+.toc-rail i{display:block;height:2px;border-radius:1px;background:rgba(0,0,0,.2);transition:background-color .2s,width .2s}
+.toc-rail i.l1{width:14px}
+.toc-rail i.l2{width:8px}
+.toc-rail i.on{background:var(--acc);width:18px}
+.toc-rail i.l2.on{width:12px}
+.toc-rail i.na,.toc li.na,.toc-sheet li.na{display:none}
+.toc-card{position:absolute;right:0;top:50%;transform:translate(8px,-50%);width:max-content;max-width:260px;padding:16px 18px 14px 16px;
+  border-radius:14px;background:rgba(255,255,255,.92);-webkit-backdrop-filter:blur(14px) saturate(1.4);backdrop-filter:blur(14px) saturate(1.4);
+  box-shadow:0 10px 32px rgba(0,0,0,.12),0 0 0 1px rgba(0,0,0,.05);opacity:0;visibility:hidden;transition:opacity .2s ease,transform .2s ease,visibility .2s}
+.toc:hover .toc-card,.toc:focus-within .toc-card,.toc.peek .toc-card{opacity:1;visibility:visible;transform:translate(0,-50%)}
+.toc.wide .toc-rail{display:none}
+.toc.wide .toc-card{position:relative;top:auto;right:auto;transform:none;opacity:1;visibility:visible;box-shadow:0 2px 14px rgba(0,0,0,.06),0 0 0 1px rgba(0,0,0,.05)}
+.toc-h{margin:0 0 10px;font:600 10px/1 "Poppins",sans-serif;letter-spacing:.16em;text-transform:uppercase;color:rgb(154,154,154)}
+.toc ol,.toc-sheet ol{list-style:none;margin:0;padding:0}
+.toc li a,.toc-sheet li a{display:flex;align-items:baseline;gap:8px;text-decoration:none;white-space:nowrap;transition:color .2s}
+.toc li.l1 a,.toc-sheet li.l1 a{font:500 13px/1.25 "Poppins",sans-serif;color:rgb(98,100,104);padding:5px 0}
+.toc li.l2 a,.toc-sheet li.l2 a{font:400 12px/1.25 "Poppins",sans-serif;color:rgb(140,142,146);padding:4px 0 4px 26px}
+.toc li a .n,.toc-sheet li a .n{width:18px;flex:none;font:600 10px/1 "Poppins",sans-serif;letter-spacing:.08em;color:rgb(154,154,154)}
+.toc li.l1.nn a,.toc-sheet li.l1.nn a{padding-left:26px}
+.toc li a:hover,.toc-sheet li a:hover,.toc li a.in,.toc-sheet li a.in{color:rgb(28,30,32)}
+.toc li a.on,.toc-sheet li a.on,.toc li a.on .n,.toc-sheet li a.on .n,.toc li a.in .n,.toc-sheet li a.in .n{color:var(--acc)}
+.toc-fab{display:none}
+.toc-sheet[hidden]{display:none}
+@media (max-width:767px){
+  .toc{display:none}
+  .toc-fab{--acc:rgb(193,138,87);position:fixed;right:16px;bottom:calc(18px + env(safe-area-inset-bottom));z-index:58;display:flex;
+    align-items:center;justify-content:center;width:46px;height:46px;border:0;border-radius:50%;padding:0;color:rgb(28,30,32);
+    background:rgba(255,255,255,.9);-webkit-backdrop-filter:blur(10px);backdrop-filter:blur(10px);
+    box-shadow:0 4px 16px rgba(0,0,0,.16),0 0 0 1px rgba(0,0,0,.05);opacity:0;visibility:hidden;transform:translateY(8px);
+    transition:opacity .25s ease,transform .25s ease,visibility .25s;-webkit-tap-highlight-color:transparent;cursor:pointer}
+  .toc-fab.show{opacity:1;visibility:visible;transform:none}
+  .toc-sheet{--acc:rgb(193,138,87);position:fixed;inset:0;z-index:66}
+  .toc-sheet-ov{position:absolute;inset:0;background:rgba(0,0,0,.28)}
+  .toc-sheet-panel{position:absolute;left:0;right:0;bottom:0;max-height:72vh;overflow:auto;padding:18px 24px calc(22px + env(safe-area-inset-bottom));
+    border-radius:18px 18px 0 0;background:#fff;box-shadow:0 -8px 30px rgba(0,0,0,.12);animation:toc-up .25s ease}
+  .toc-sheet-panel::before{content:"";display:block;width:36px;height:4px;border-radius:2px;background:rgba(0,0,0,.14);margin:0 auto 14px}
+  .toc-sheet li.l1 a{font-size:15px;padding:9px 0}
+  .toc-sheet li.l2 a{font-size:14px;padding:7px 0 7px 26px}
+}
+@keyframes toc-up{from{transform:translateY(24px);opacity:.4}to{transform:none;opacity:1}}
 .fxl{position:relative;z-index:60}
 .vb{overflow:hidden;transform:translateZ(0)}
 .gi{display:block;cursor:zoom-in;overflow:hidden}
@@ -470,25 +515,24 @@ a.sv{display:block}
 .t5f{font-family:"Poppins",sans-serif;font-weight:600;font-size:21px;line-height:28.35px;color:rgb(245, 245, 245);text-align:center}
 .t60{text-decoration-line:underline;text-decoration-color:rgb(154, 154, 154);text-decoration-style:solid}
 .t61{font-family:"Poppins",sans-serif;font-weight:600;font-size:15px;line-height:21px;color:rgb(230, 230, 230);text-align:center}
-.t62{font-family:"Poppins",sans-serif;font-weight:400;font-size:16px;font-style:normal;line-height:22.4px;letter-spacing:normal;color:rgb(206, 197, 177);text-align:end;list-style-type:none}
-.t63{font-family:"Poppins",sans-serif;font-weight:400;font-size:14px;line-height:23.8px;color:rgb(90, 90, 90);text-align:left;margin-bottom:14px}
-.t64{font-family:"Poppins",sans-serif;font-weight:600;font-size:21px;line-height:27.3px;letter-spacing:-0.21px;color:rgb(28, 30, 32);text-align:left}
-.t65{font-family:"Poppins",sans-serif;font-weight:600;font-size:14px;line-height:21px;letter-spacing:2.24px;color:rgb(193, 138, 87);text-align:left}
-.t66{font-family:"Poppins",sans-serif;font-weight:600;font-size:12px;font-style:normal;line-height:normal;letter-spacing:3px;color:rgb(210, 160, 110);text-align:center;white-space:nowrap;list-style-type:disc}
-.t67{text-decoration-line:underline;text-decoration-color:rgb(90, 90, 90);text-decoration-style:solid}
-.t68{color:rgb(51, 51, 51)}
-.t69{font-family:"Poppins",sans-serif;font-weight:600;font-size:15px;line-height:21px;color:rgb(28, 30, 32);text-align:center}
-.t6a{font-family:"Avantt","Poppins",sans-serif;font-weight:600;font-size:80px}
-.t6b{color:rgb(222, 222, 222)}
-.t6c{font-family:"GT Walsheim Pro","Poppins",sans-serif;font-weight:300}
-.t6d{font-family:"GT Walsheim Pro","Poppins",sans-serif;font-weight:400}
-.t6e{color:rgb(210, 160, 110)}
-.t6f{color:rgb(69, 69, 69)}
-.t70{color:rgb(113, 112, 112)}
-.t71{font-family:"Avantt","Poppins",sans-serif;font-weight:600;font-size:28px;text-align:left}
-.t72{font-family:"Barlow",sans-serif;font-weight:300;font-size:18px;text-align:left}
-.t73{font-family:"Barlow",sans-serif;font-weight:300;font-size:20px;text-align:left}
-.t74{font-family:"Barlow",sans-serif;font-weight:300;font-size:12px;text-align:left}
-.t75{font-family:"Poppins",sans-serif;font-weight:400;font-size:17px;line-height:28.9px;color:rgb(90, 90, 90);text-align:left;margin-bottom:6px}
-.t76{font-family:"Poppins",sans-serif;font-weight:400;font-size:14px;line-height:23.8px;color:rgb(90, 90, 90);text-align:left;margin-bottom:6px}
-.t77{font-family:"Poppins",sans-serif;font-weight:600;font-size:15px;font-style:normal;line-height:normal;letter-spacing:3.75px;color:rgb(210, 160, 110);text-align:center;white-space:nowrap;list-style-type:disc}
+.t62{font-family:"Poppins",sans-serif;font-weight:400;font-size:14px;line-height:23.8px;color:rgb(90, 90, 90);text-align:left;margin-bottom:14px}
+.t63{font-family:"Poppins",sans-serif;font-weight:600;font-size:21px;line-height:27.3px;letter-spacing:-0.21px;color:rgb(28, 30, 32);text-align:left}
+.t64{font-family:"Poppins",sans-serif;font-weight:600;font-size:14px;line-height:21px;letter-spacing:2.24px;color:rgb(193, 138, 87);text-align:left}
+.t65{font-family:"Poppins",sans-serif;font-weight:600;font-size:12px;font-style:normal;line-height:normal;letter-spacing:3px;color:rgb(210, 160, 110);text-align:center;white-space:nowrap;list-style-type:disc}
+.t66{text-decoration-line:underline;text-decoration-color:rgb(90, 90, 90);text-decoration-style:solid}
+.t67{color:rgb(51, 51, 51)}
+.t68{font-family:"Poppins",sans-serif;font-weight:600;font-size:15px;line-height:21px;color:rgb(28, 30, 32);text-align:center}
+.t69{font-family:"Avantt","Poppins",sans-serif;font-weight:600;font-size:80px}
+.t6a{color:rgb(222, 222, 222)}
+.t6b{font-family:"GT Walsheim Pro","Poppins",sans-serif;font-weight:300}
+.t6c{font-family:"GT Walsheim Pro","Poppins",sans-serif;font-weight:400}
+.t6d{color:rgb(210, 160, 110)}
+.t6e{color:rgb(69, 69, 69)}
+.t6f{color:rgb(113, 112, 112)}
+.t70{font-family:"Avantt","Poppins",sans-serif;font-weight:600;font-size:28px;text-align:left}
+.t71{font-family:"Barlow",sans-serif;font-weight:300;font-size:18px;text-align:left}
+.t72{font-family:"Barlow",sans-serif;font-weight:300;font-size:20px;text-align:left}
+.t73{font-family:"Barlow",sans-serif;font-weight:300;font-size:12px;text-align:left}
+.t74{font-family:"Poppins",sans-serif;font-weight:400;font-size:17px;line-height:28.9px;color:rgb(90, 90, 90);text-align:left;margin-bottom:6px}
+.t75{font-family:"Poppins",sans-serif;font-weight:400;font-size:14px;line-height:23.8px;color:rgb(90, 90, 90);text-align:left;margin-bottom:6px}
+.t76{font-family:"Poppins",sans-serif;font-weight:600;font-size:15px;font-style:normal;line-height:normal;letter-spacing:3.75px;color:rgb(210, 160, 110);text-align:center;white-space:nowrap;list-style-type:disc}
