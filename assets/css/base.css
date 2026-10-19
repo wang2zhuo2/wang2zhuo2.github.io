@@ -1,0 +1,81 @@
+/* Layout model: each page is rendered twice, a 1440px desktop canvas (.D) and a 320px mobile canvas (.M),
+   positioned exactly like the original Wix layouts and scaled to the window with CSS zoom (see head script). */
+:root{--zd:1;--zm:1}
+*,*::before,*::after{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%;text-size-adjust:100%}
+body{margin:0;overflow-x:hidden;font-family:Arial,Helvetica,sans-serif}
+#bottom{height:0}
+.D{position:relative;width:max(1440px,100%);zoom:var(--zd);overflow-x:clip}
+.M{display:none;position:relative;width:320px;zoom:var(--zm);overflow-x:clip}
+.pbg{z-index:0;overflow:hidden;pointer-events:none}
+.pbg-d{position:fixed;inset:0}
+@media (max-width:767px){.D{display:none}.M{display:block}}
+.hdr,.pg,.ftr{position:relative;width:100%;display:block}
+.hdr{z-index:50}
+.pg{z-index:1}
+.ftr{z-index:2}
+.c{position:absolute;margin:0}
+.f{position:absolute;left:0;top:0;width:100%;height:100%;margin:0}
+img.c,img.f,video.c,video.f,iframe.c{display:block;border:0}
+.bg{overflow:hidden;pointer-events:none}
+.tx{overflow-wrap:break-word}
+:where(.tx p,.tx h1,.tx h2,.tx h3,.tx h4,.tx h5,.tx h6,.tx ul,.tx ol,.tx li,.tx blockquote,.tx pre){margin:0}
+:where(.tx ul,.tx ol){padding:0}
+:where(.tx a){color:inherit;text-decoration:none}
+.sv svg,.bp svg{display:block;width:100%;height:100%}
+a.sv{display:block}
+.btn{display:block;text-decoration:none;cursor:pointer;-webkit-tap-highlight-color:transparent}
+.bp{position:absolute;display:block}
+.bl{white-space:nowrap}
+.mn .mi{position:absolute;display:block;text-decoration:none}
+.mn .mi span{position:absolute;display:block;white-space:nowrap}
+.mn .mi[style*="--hc"]:hover span{color:var(--hc)!important}
+.anc{position:absolute;left:0;width:1px;height:1px;pointer-events:none}
+.am{display:none;position:fixed;z-index:53}
+.am a{position:absolute;left:0;right:0;display:block;text-decoration:none;white-space:nowrap;transition:color .2s}
+.am a.on{color:rgb(210,160,110)!important}
+.fxl{position:relative;z-index:60}
+.vb{overflow:hidden;transform:translateZ(0)}
+.gi{display:block;cursor:zoom-in;overflow:hidden}
+/* Horizontal photo slider (Wix Pro Gallery) */
+.sl{overflow:hidden}
+.sl-t{display:flex;height:100%;overflow-x:auto;overflow-y:hidden;scroll-snap-type:x mandatory;scroll-behavior:smooth;scrollbar-width:none;-webkit-overflow-scrolling:touch}
+.sl-t::-webkit-scrollbar{display:none}
+.sl-i{position:relative;flex:none;height:100%;scroll-snap-align:start;cursor:zoom-in}
+.sl-a{position:absolute;top:50%;width:23px;height:39px;margin-top:-19.5px;border:0;padding:0;background:transparent;cursor:pointer;filter:drop-shadow(0 0 3px rgba(0,0,0,.45));z-index:2}
+.sl-a svg{display:block;width:100%;height:100%}
+.sl-n{right:23px}
+.sl-p{left:23px;transform:scaleX(-1)}
+.sl-a[hidden]{display:none}
+/* Mobile header menu (matches the Wix drawer) */
+.hb{position:absolute;left:287px;top:8px;width:26px;height:26px;border:0;padding:0;margin:0;background:#fff;cursor:pointer;z-index:70;-webkit-tap-highlight-color:transparent}
+.hb i{position:absolute;left:0;height:2px;background:#000;border-radius:2px;transition:transform .25s ease,width .25s ease,top .25s ease}
+.hb i:nth-child(1){top:3px;width:13px}
+.hb i:nth-child(2){top:12px;width:26px}
+.hb i:nth-child(3){top:21px;width:18px}
+.hb.open i:nth-child(1){top:12px;width:26px;transform:rotate(45deg)}
+.hb.open i:nth-child(2){transform:rotate(-45deg)}
+.hb.open i:nth-child(3){top:12px;width:0}
+.mm{position:fixed;left:0;top:0;width:100%;height:100%;z-index:65}
+.mm[hidden]{display:none}
+.mm-ov{position:absolute;inset:0;background:rgba(0,0,0,.16)}
+.mm-dr{position:absolute;top:0;right:0;width:40%;height:100%;background:#fff}
+.mm-dr a{position:absolute;left:0;width:95%;height:56px;padding-left:17px;font:500 12px/56px "Poppins",sans-serif;color:#000;text-decoration:none}
+.mm-dr a.on{color:rgb(210,160,110)}
+/* Lightbox: showreel video and photo gallery */
+.lb{position:fixed;inset:0;z-index:1000;display:flex;align-items:center;justify-content:center}
+.lb[hidden]{display:none}
+.lb-ov{position:absolute;inset:0;background:rgba(0,0,0,.9)}
+.lb-box{position:relative;width:min(982px,94vw);aspect-ratio:982/645;background:#000;display:flex;align-items:center;justify-content:center}
+.lb-media{position:absolute;left:0;right:0;top:10.7%;aspect-ratio:980/560}
+.lb-media iframe{position:absolute;inset:0;width:100%;height:100%;border:0}
+.lb-x{position:absolute;right:-1px;top:4px;width:36px;height:36px;border:0;padding:0;background:transparent;color:rgb(128,128,128);cursor:pointer;z-index:2}
+.lb-x svg{display:block;width:100%;height:100%;fill:currentColor}
+.lb-prev,.lb-next{display:none}
+.lb.gal .lb-box{width:auto;height:auto;aspect-ratio:auto;background:transparent}
+.lb.gal .lb-media{position:static;aspect-ratio:auto}
+.lb.gal .lb-media img{display:block;max-width:92vw;max-height:88vh;width:auto;height:auto}
+.lb.gal .lb-x{position:fixed;right:16px;top:16px}
+.lb.gal .lb-prev,.lb.gal .lb-next{display:block;position:fixed;top:50%;transform:translateY(-50%);width:48px;height:64px;border:0;background:transparent;color:#fff;font-size:44px;line-height:64px;cursor:pointer;z-index:2;opacity:.8}
+.lb.gal .lb-prev{left:8px}
+.lb.gal .lb-next{right:8px}

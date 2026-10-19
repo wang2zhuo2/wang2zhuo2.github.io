@@ -1,0 +1,1226 @@
+<!doctype html>
+<html lang="en"><head>
+  <meta charset="UTF-8">
+  <title>Project card for portfolio - final cleanup</title>
+  <meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+<link href="https://fonts.googleapis.com/css?family=Poppins" rel="stylesheet">
+
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.0/animate.min.css">
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.8.2/css/all.min.css"><style>
+@import url('https://fonts.googleapis.com/css?family=Poppins:100,200,300,400,500,600,700,800,900&display=swap'); /* 使用Google云字体库中Poppins字体，需要使用到300，400，500，600，700等几种的字体粗细*/
+
+  
+.Poppinser{ font-family: 'Poppins', sans-serif; font-weight: Normal; /* 默认采用normal粗细 */ } 
+.pop-q{ font-weight:100; /* 字体粗细为300*/} 
+.pop-w{ font-weight:200; /* 字体粗细为300*/} 
+.pop-e{ font-weight:300; /* 字体粗细为300*/} 
+.pop-r{ font-weight:400; /* 字体粗细为400*/} 
+.rbt-t{ font-weight:500; /* 字体粗细为500*/} 
+.rbt-y{ font-weight:600; /* 字体粗细为600*/} 
+.rbt-u{ font-weight:700; /* 字体粗细为700*/}
+
+
+html {
+  overflow-x: hidden ;
+}
+
+body {
+  color: #1C1E20;
+}
+
+h1 {
+  color: #f94c43;
+}
+
+a {
+  color: #f94c43;
+}
+a:hover {
+  color: #f94c43;
+}
+
+
+body {
+  overflow-x: hidden;
+  font-family: "Poppins Light";
+  background-color: transparent;
+}
+body h1,
+body h2{
+font-size: 60px;
+}
+body h3{
+font-family: "Poppins extralight";
+font-size: 1.5rem;
+  /* font-weight: 550; */
+}
+body h4,
+body strong {
+  font-weight: 600; /* 项目标题的font width */
+}
+
+@media (min-width: 992px) {
+  .container {
+    padding-left: 80px;
+    padding-right: 80px;
+  }
+}
+@media (min-width: 1152px) {
+  .container {
+    padding-left: 15px;
+    padding-right: 15px;
+  }
+}
+@media (min-width: 1200px) {
+  .container {
+    padding-left: 80px;
+    padding-right: 80px;
+  }
+}
+@media (min-width: 1360px) {
+  .container {
+    padding-left: 15px;
+    padding-right: 15px;
+  }
+}
+
+.project-card {
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
+  margin: 100px auto; /* 左边value是card间距，右边value是card宽度 */
+  padding: 40px 40px 40px;
+  position: relative;
+  -webkit-transform-style: preserve-3d;
+          transform-style: preserve-3d;  
+  -webkit-perspective: 1300px;
+          perspective: 1300px; 
+  -webkit-transition: box-shadow 2s; 
+  transition: box-shadow 2s;
+  border-radius: 16px;
+}
+@media (min-width: 768px) {
+  .project-card {
+    padding: 64px 64px 54px;
+  }
+}
+@media (min-width: 992px) {
+  .project-card {
+    padding: 64px 64px 24px;
+  }
+}
+.project-card.b-o-w {
+  background-color: white;
+}
+.project-card h2 {
+  margin-bottom: 1rem; /* 这个是主标题和底下内容的距离 */
+}
+.project-card h3 {
+
+  margin-bottom: 0rem;
+  /* text-decoration: underline;
+  text-decoration-thickness: 1px; */
+
+
+}
+
+
+/* img.hero是card里最大的项目gif图片 */
+.project-card :is(img,video).hero {
+  -o-object-fit: cover;
+     object-fit: cover;
+  -o-object-position: 50% 30%;
+     object-position: 50% 30%;
+  height: 300px;
+  width: calc(100% + 2 * 40px);
+  left: -40px;
+  -webkit-transition: box-shadow 0.5s, border-radius 0.5s, -webkit-transform 0.5s;
+  transition: box-shadow 0.5s, border-radius 0.5s, -webkit-transform 0.5s;
+  transition: transform 0.5s, box-shadow 0.5s, border-radius 0.5s;
+  transition: transform 0.5s, box-shadow 0.5s, border-radius 0.5s, -webkit-transform 0.5s;
+  box-shadow: 0 16px 32px rgba(0, 0, 0, 0);
+  position: relative;
+}
+@media (min-width: 768px) {
+  .project-card :is(img,video).hero {
+    left: -64px;
+    width: calc(100% + 2 * 64px);
+  }
+}
+@media (min-width: 992px) {
+  .project-card :is(img,video).hero {
+    left: auto;
+    right: auto;
+    position: relative;
+    width: calc(100% + 64px);
+    margin-top: -64px;
+    margin-right: -64px;
+    height: 620px;
+  }
+}
+@media (min-width: 1200px) {
+  .project-card :is(img,video).hero {
+    height: 500px;
+  }
+}
+
+
+/* 下面的三个media是container的定义 */
+.project-card .thumb-container {
+  height: 72px;
+  width: calc(100% + 32px);
+  position: relative;
+  top: -32px;
+  left: -16px;
+  right: -16px;
+}
+@media (min-width: 576px) {
+  .project-card .thumb-container {
+    height: 96px;
+  }
+}
+@media (min-width: 768px) {
+  .project-card .thumb-container {
+    height: 112px;
+  }
+}
+@media (min-width: 992px) {
+  .project-card .thumb-container {
+    position: absolute;
+    top: -96px;
+    left: auto;
+    right: -96px;
+    height: 496px;
+    width: 144px;
+  }
+}
+/* 下面的三个media是container里图片的定义 */
+.project-card .thumb-container :is(img,video).thumb {
+  height: 80px;
+  width: 80px;
+  border-radius: 8px;
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+  -webkit-transition: box-shadow 0.5s, -webkit-transform 0.5s;
+  transition: box-shadow 0.5s, -webkit-transform 0.5s;
+  transition: transform 0.5s, box-shadow 0.5s;
+  transition: transform 0.5s, box-shadow 0.5s, -webkit-transform 0.5s;
+}
+@media (min-width: 576px) {
+  .project-card .thumb-container :is(img,video).thumb {
+    margin-bottom: 32px;
+    height: 104px;
+    width: 104px;
+  }
+}
+@media (min-width: 768px) {
+  .project-card .thumb-container :is(img,video).thumb {
+    margin-bottom: 32px;
+    height: 128px;
+    width: 128px;
+  }
+}
+@media (min-width: 992px) {
+  .project-card .thumb-container :is(img,video).thumb {
+    height: 144px;
+    width: 144px;
+  }
+}
+
+
+
+/* 下面的三个media是logo container的定义 */
+.project-card .logo13-container {
+  height: 72px;
+  width: calc(100% + 32px);
+  position: relative;
+  top: -32px;
+  left: 335px;
+  right: -16px;
+}
+@media (min-width: 576px) {
+  .project-card .logo13-container {
+    height: 0px;
+  }
+}
+@media (min-width: 768px) {
+  .project-card .logo13-container {
+    height: 0x;
+  }
+}
+@media (min-width: 992px) {
+  .project-card .logo13-container {
+    position: absolute;
+    top: 40px;
+    margin-left: -300px;
+    right: auto;
+    height: 496px;
+    width: 100px;
+  }
+}
+/* 下面的三个media是logo在不同窗口宽度下的定义*/
+@media (min-width: 576px) {
+  .project-card .logo13-container img.logo13 {
+    margin-bottom: 32px;
+    height: 0px;
+    width: 0px;
+  }
+}
+@media (min-width: 768px) {
+  .project-card .logo13-container img.logo13 {
+    margin-bottom: 32px;
+    height: 0px;
+    width: 0px;
+  }
+}
+@media (min-width: 992px) {
+  .project-card .logo13-container img.logo13 {
+    height: 100px;
+    width: auto;
+  }
+}
+
+
+
+/* 下面的三个media是logo container的定义 */
+
+@media (min-width: 576px) {
+  .project-card .logo24-container {
+    height: 0px;
+  }
+}
+@media (min-width: 768px) {
+  .project-card .logo24-container {
+    height: 0x;
+  }
+}
+@media (min-width: 992px) {
+  .project-card .logo24-container {
+    position: absolute;
+    top: 40px;
+    margin-right:00px;
+    right: auto;
+    left: 66.6%;
+    height: 496px;
+  }
+}
+/* 下面的三个media是logo在不同窗口宽度下的定义*/
+@media (min-width: 576px) {
+  .project-card .logo24-container img.logo24 {
+    margin-bottom: 32px;
+    height: 0px;
+    width: 0px;
+  }
+}
+@media (min-width: 768px) {
+  .project-card .logo24-container img.logo24 {
+    margin-bottom: 32px;
+    height: 0px;
+    width: 0px;
+  }
+}
+@media (min-width: 992px) {
+  .project-card .logo24-container img.logo24 {
+    height: 80px;
+    width: auto;
+  }
+}
+
+
+
+
+
+.project-card .btn-view-project {
+  padding-top: 1rem;
+  padding-bottom: 1rem;
+  border-radius: 50px;
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
+}
+
+
+.project-card .project-description {
+  -webkit-transition: -webkit-transform 0.5s;
+  transition: -webkit-transform 0.5s;
+  transition: transform 0.5s;
+  transition: transform 0.5s, -webkit-transform 0.5s;
+}
+@media (min-width: 992px) {
+  .project-card .project-description {
+    bottom: 0;
+  }
+  .project-card p {
+    margin-bottom: 0; /* 这个是description和底下的margin gap */
+  }
+}
+
+/* meta是大图片底下的几个小项 */
+.project-card .project-meta {
+  padding: 0 0 36px;
+  -webkit-transition: -webkit-transform 0.5s;
+  transition: -webkit-transform 0.5s;
+  transition: transform 0.5s;
+  transition: transform 0.5s, -webkit-transform 0.5s;
+}
+@media (min-width: 992px) {
+  .project-card .project-meta {
+    padding: 24px 0;
+  }
+}
+.project-card .project-meta p {
+  margin-bottom: 0;
+}
+.project-card:hover {
+  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.15);
+}
+.project-card:hover :is(img,video).hero {
+  -webkit-transform: translateZ(32px);
+          transform: translateZ(32px);
+  box-shadow: 0 16px 32px rgba(0, 0, 0, 0.1);
+  border-radius: 8px;
+}
+/*下面这3组是3个项目的logo的hover shadow效果 */
+.project-card:hover img.logo13 {
+  -webkit-transform: translateZ(24px);
+          transform: translateZ(24px);
+  filter: drop-shadow(5px 5px 5px rgb(150, 150, 150));
+}
+.project-card:hover img.logo24 {
+  -webkit-transform: translateZ(24px);
+          transform: translateZ(24px);
+  filter: drop-shadow(5px 5px 5px rgb(150, 150, 150));
+}
+
+.project-card:hover :is(img,video).thumb {
+  -webkit-transform: translateZ(54px);
+          transform: translateZ(54px);
+  box-shadow: 0 16px 32px rgba(0, 0, 0, 0.1);
+}
+@media (min-width: 992px) {
+  .project-card:hover :is(img,video).thumb {
+    -webkit-transform: translateZ(54px) rotateY(-15deg);
+            transform: translateZ(54px) rotateY(-15deg);
+  }
+}
+.project-card:hover .project-description {
+  -webkit-transform: translateZ(24px);
+          transform: translateZ(24px);
+}
+.project-card:hover .project-meta {
+  -webkit-transform: translateZ(24px);
+          transform: translateZ(24px);
+}
+.project-card:hover .btn-view-project {
+  -webkit-transform: translateZ(32px);
+          transform: translateZ(32px);
+}
+
+/*下面是他四个项目view project btn的不同颜色参数 */
+
+.btn.shade-morals {
+  color: #3D6338;
+  background-color: #bec9bd;
+  border-color: #3D6338;
+  box-shadow: 0 8px 16px rgba(61, 99, 56, 0.1) !important;
+  -webkit-transition: background-color 0.2s, box-shadow 0.2s, -webkit-transform 0.5s;
+  transition: background-color 0.2s, box-shadow 0.2s, -webkit-transform 0.5s;
+  transition: background-color 0.2s, box-shadow 0.2s, transform 0.5s;
+  transition: background-color 0.2s, box-shadow 0.2s, transform 0.5s, -webkit-transform 0.5s;
+}
+.btn.shade-morals:hover, .btn.shade-morals:active {
+  background-color: #d0ddd0;
+  box-shadow: 0 10px 24px rgba(61, 99, 56, 0.2) !important;
+}
+
+
+.btn.shade-echo {
+  color: rgb(210,160,110);
+  background-color: #fdf0e3;
+  border-color: rgb(210,160,110);
+  box-shadow: 0 8px 16px rgba(244, 151, 58, 0.1) !important;
+  -webkit-transition: background-color 0.2s, box-shadow 0.2s, -webkit-transform 0.5s;
+  transition: background-color 0.2s, box-shadow 0.2s, -webkit-transform 0.5s;
+  transition: background-color 0.2s, box-shadow 0.2s, transform 0.5s;
+  transition: background-color 0.2s, box-shadow 0.2s, transform 0.5s, -webkit-transform 0.5s;
+}
+.btn.shade-echo:hover, .btn.shade-echo:active {
+  background-color: #fef8f2;
+  box-shadow: 0 10px 24px rgba(244, 151, 58, 0.2) !important;
+}
+
+.btn.shade-hv {
+  color: #FE2C55;
+  background-color: #fdd4dc;
+  border-color: #FE2C55;
+  box-shadow: 0 8px 16px rgba(254, 44, 85, 0.1) !important;
+  -webkit-transition: background-color 0.2s, box-shadow 0.2s, -webkit-transform 0.5s;
+  transition: background-color 0.2s, box-shadow 0.2s, -webkit-transform 0.5s;
+  transition: background-color 0.2s, box-shadow 0.2s, transform 0.5s;
+  transition: background-color 0.2s, box-shadow 0.2s, transform 0.5s, -webkit-transform 0.5s;
+}
+.btn.shade-hv:hover, .btn.shade-hv:active {
+  background-color: #ecc0ca;
+  box-shadow: 0 10px 24px rgba(254, 44, 85, 0.2) !important;
+}
+
+.btn.shade-mesh {
+  color: #701BE7;
+  background-color: #E2D1FA;
+  border-color: #701BE7;
+  box-shadow: 0 8px 16px rgba(112, 27, 231, 0.1) !important;
+  -webkit-transition: background-color 0.2s, box-shadow 0.2s, -webkit-transform 0.5s;
+  transition: background-color 0.2s, box-shadow 0.2s, transform 0.5s;
+}
+.btn.shade-mesh:hover, .btn.shade-mesh:active {
+  background-color: #D7BFF8;
+  box-shadow: 0 10px 24px rgba(112, 27, 231, 0.2) !important;
+}
+
+.btn.shade-whatif {
+  color: rgb(210,160,110);
+  background-color: #fdf0e3;
+  border-color: rgb(210,160,110);
+  box-shadow: 0 8px 16px rgba(244, 151, 58, 0.1) !important;
+  -webkit-transition: background-color 0.2s, box-shadow 0.2s, -webkit-transform 0.5s;
+  transition: background-color 0.2s, box-shadow 0.2s, -webkit-transform 0.5s;
+  transition: background-color 0.2s, box-shadow 0.2s, transform 0.5s;
+  transition: background-color 0.2s, box-shadow 0.2s, transform 0.5s, -webkit-transform 0.5s;
+}
+.btn.shade-whatif:hover, .btn.shade-whatif:active {
+  background-color: #fef8f2;
+  box-shadow: 0 10px 24px rgba(244, 151, 58, 0.2) !important;
+}
+
+
+@media (min-width: 992px) {
+  .project-card.left-hand > .row {
+    -webkit-box-orient: horizontal !important;
+    -webkit-box-direction: reverse !important;
+            flex-direction: row-reverse !important;
+  }
+  .project-card.left-hand :is(img,video).hero {
+    margin-right: 0;
+    margin-left: -64px;
+  }
+
+  .project-card.left-hand .thumb-container {
+    right: unset;
+    left: -96px; 
+  }
+  .project-card.left-hand:hover :is(img,video).thumb {
+    -webkit-transform: translateZ(54px) rotateY(15deg);
+            transform: translateZ(54px) rotateY(15deg);
+  }
+
+}
+
+
+.nav-core {
+  background-color: #161618;
+  padding: 24px;
+  font-weight: 900;
+}
+.nav-core a {
+  color: rgba(255, 255, 255, 0.3);
+}
+.nav-core a.active {
+  color: white;
+}
+.nav-core a:hover:not(.active) {
+  color: rgba(255, 255, 255, 0.5);
+}
+
+.header-hero {
+  margin-top: 24px;
+  margin-bottom: 48px !important;
+}
+@media (min-width: 576px) {
+  .header-hero {
+    margin-top: 72px;
+    margin-bottom: 24px !important;
+  }
+}
+
+.circ-inline {
+  height: 50px;
+  width: 50px;
+  border-radius: 50%;
+  -o-object-fit: cover;
+     object-fit: cover;
+}
+@media (min-width: 576px) {
+  .circ-inline {
+    height: 60px;
+    width: 60px;
+  }
+}
+@media (min-width: 768px) {
+  .circ-inline {
+    height: 80px;
+    width: 80px;
+  }
+}
+
+.circ-flex {
+  max-width: 100%;
+  border-radius: 50%;
+  -o-object-fit: cover;
+     object-fit: cover;
+}
+
+.footer {
+  background-color: #faaca8;
+  padding-top: 32px;
+  padding-bottom: 80px;
+}
+</style><style data-minimal-cards="20260912">.project-card {
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.112);
+}
+
+.project-card:hover {
+  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.286);
+}
+
+.project-card > .row:last-child,
+.project-card > .row:last-child > .col-lg-4 {
+  transform-style: preserve-3d;
+}
+
+.project-card:hover .btn-view-project {
+  transform: translateZ(19.2px);
+}
+
+.project-card .lable-container {
+  padding-bottom: 24px;
+}
+
+.project-card .project-pills {
+  display: flex;
+  flex-wrap: wrap;
+  align-content: flex-start;
+  align-items: flex-start;
+  gap: 12px 10px;
+  width: 100%;
+  max-width: 100%;
+  min-height: 0;
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.project-card .project-pills > li {
+  flex: 0 0 auto;
+  padding: 4px 12px;
+  border: 1px solid #575757;
+  border-radius: 999px;
+  color: #575757;
+  font: 500 13px/20px "Poppins", sans-serif;
+  letter-spacing: 0;
+  white-space: nowrap;
+}
+
+.project-card .project-description > h3 {
+  font-family: "Poppins", sans-serif;
+  font-size: 20px;
+  font-weight: 300;
+  font-style: normal;
+  line-height: 1.5;
+  margin-bottom: 0;
+}
+
+.project-card .project-description > h3 > em {
+  font-style: inherit;
+}
+
+.project-card .project-description > p:empty,
+.project-card .project-description > h1:has(> img[src=" "]) {
+  display: none;
+}
+
+.project-card :is(img,video).hero {
+  display: block;
+}
+
+.project-card :is(img,video).thumb {
+  object-fit: cover;
+  flex-shrink: 0;
+  max-width: 100%;
+}
+
+.project-card img.logo13,
+.project-card img.logo24 {
+  filter: drop-shadow(3px 3px 3px rgba(150, 150, 150, 0));
+  transition: filter 0.35s ease, transform 0.5s ease;
+}
+
+.project-card:hover img.logo13,
+.project-card:hover img.logo24 {
+  filter: drop-shadow(3px 3px 3px rgb(150, 150, 150));
+}
+
+@media (min-width: 992px) {
+  .project-card > .row:first-child,
+  .project-card > .row:first-child > div,
+  .project-card .thumb-container,
+  .project-card .project-description,
+  .project-card .project-description > .logo13-container,
+  .project-card .project-description > .logo24-container {
+    transform-style: preserve-3d;
+  }
+
+  .project-card[data-project-title="BEYOND"] {
+    --project-icon-width: 30.2752px;
+    --project-icon-height: 60.5505px;
+    --project-icon-inset-left: 32.1101px;
+    --project-icon-inset-top: 16.5138px;
+  }
+
+  .project-card[data-project-title="TikTok Effect House"] {
+    --project-icon-width: 47.0813px;
+    --project-icon-height: 46.3158px;
+    --project-icon-inset-left: 16.4593px;
+    --project-icon-inset-top: 16.8421px;
+  }
+
+  .project-card[data-project-title="Hand MR"] {
+    --project-icon-width: 58.0311px;
+    --project-icon-height: 56.1658px;
+    --project-icon-inset-left: 21.4508px;
+    --project-icon-inset-top: 21.9689px;
+  }
+
+  .project-card[data-project-title="Nomadic Cloud"] {
+    --project-icon-width: 59.3488px;
+    --project-icon-height: 59.7209px;
+    --project-icon-inset-left: 12.186px;
+    --project-icon-inset-top: 7.0698px;
+  }
+
+  .project-card > .row > .col-lg-4 {
+    flex: 0 0 max(33.333333%, 310px);
+    max-width: max(33.333333%, 310px);
+  }
+
+  .project-card > .row > .col-lg-8,
+  .project-card > .row > .col-lg {
+    flex: 1 1 0;
+    max-width: none;
+    min-width: 0;
+  }
+
+  .project-card:not(.left-hand) .project-meta {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 16px 24px;
+    padding: 16px 0;
+    margin-left: 0;
+    margin-right: 0;
+  }
+
+  .project-card:not(.left-hand) .project-meta > .col-6 {
+    width: auto;
+    max-width: none;
+    padding: 0;
+  }
+
+  .project-card > .row:last-child > .col-lg-4 {
+    align-items: flex-end !important;
+    padding-bottom: 16px;
+  }
+
+  .project-card[data-project-title="TikTok Effect House"] > .row:last-child > .col-lg-4 {
+    padding-bottom: 24px;
+  }
+
+  .project-card[data-project-title="Nomadic Cloud"] .project-meta {
+    padding-top: 32px;
+    padding-bottom: 16px;
+  }
+
+  .project-card .project-meta > div:has(> strong) {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .project-card .project-meta p {
+    margin-top: auto;
+  }
+
+  .project-card .thumb-container :is(img,video).thumb:last-child {
+    margin-bottom: 0;
+  }
+
+  .project-card:has(.logo13-container) > .row:first-child > .col-lg-4 {
+    padding-top: 100px;
+  }
+
+  .project-card .project-description {
+    position: relative;
+    min-width: 0;
+    max-width: 100%;
+  }
+
+  .project-card .project-description > .logo13-container,
+  .project-card .project-description > .logo24-container {
+    position: absolute;
+    left: 0;
+    right: auto;
+    top: auto;
+    bottom: calc(100% + 24px);
+    width: var(--project-icon-width);
+    height: var(--project-icon-height);
+    margin: 0;
+  }
+
+  .project-card .project-description img.logo13,
+  .project-card .project-description img.logo24 {
+    display: block;
+    position: absolute;
+    left: calc(-1 * var(--project-icon-inset-left));
+    top: calc(-1 * var(--project-icon-inset-top));
+    margin: 0;
+    flex: none;
+  }
+
+  .project-card:hover .project-description img.logo13,
+  .project-card:hover .project-description img.logo24 {
+    transform: translateZ(8px);
+  }
+
+  .project-card[data-project-title="Hand MR"] h2 {
+    white-space: nowrap;
+  }
+}</style><style data-mesh-card="20260913">@media (min-width: 992px) {.project-card[data-project-title="Microsoft Mesh"] {--project-icon-width:44px;--project-icon-height:44px;--project-icon-inset-left:0px;--project-icon-inset-top:0px;} .project-card[data-project-title="Microsoft Mesh"] > .row:last-child > .col-lg-4 {padding-bottom:24px;}}</style><style data-card-title-font="avantt-bold-20260914">@font-face {
+  font-family: "Avantt TRIAL";
+  src: url("data:font/otf;base64,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AAAAAAAA//P/5gAA//EAAAAIAAAAAAAAAAAAAAAAAAAAAAAA/9UAAAAA//UAAAAAAAAAAAAA//EAAAAAAAAAAAAAAAD/8f/iAAAAAP/i/9cAAAAAAAAAAAAAAAAAAAAAAAD/xAAA/9cAAAAAAAAAAP/9/+f/9QAAAAAAAP/1AAAAAAAAAAAAAAAAAAAAAAAIAAAAAAAAAAD/+AAAAAAAAAAAAAAAAAAA/8sAAP+1AAD//P/xAAD/9f/0/+wAAAAAAAD/7QAAAAAAAAAA/+wAAAAAAAD/+AAAAAAAAAAA/+IAAAAA//P/+AAAAAAAAAAAAAAAAAAA/+kAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAD/4v+1AAD/9v/wAAAAAP/9//gAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAD/ywAAAAAAAAAA//oAAAAAAAAAAP/yAAAAAAAAAAD/+wAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAD/8QAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA/90AAAAAAAAAAAAAAAAAAAAAAAD/3wAAAAAAAP+6AAD/6f/pAAAAAP/3/+sAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAP/sAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAD/vwAA//MAAAAAAAAAAP/4AAAAAAAAAAAAAAAAAAAAAAAA/+4AAP/4AAD/4gAAAAAAAAAAAAAAAAAAAAD/8f/iAAAAAAAAAAAAAP/4AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA//gAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAD/9QAA/+kAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA8AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAADwAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA8AAAAAAAAAAAAAAAD//AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAADwAAAAAAAAAAAAAAAP/8AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAB4AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAIABgACAAUAAAAHAAgABAALAA0ABgAPACoACQAsADYAJQA4AD8AMAABAAMAPQABAAUABQAAAAIABQAAAAAACwADAAQAAAAjAAUABwAkAAgACQAKAAsADAANAA4ADwAQAAkABgAGAAYAHgAGAB0AFAARABUAIQAVABIAHwAUAAAAIAATACEAFAAUABUAEQAiABYAFwAYAAAAGQAaABsAGQAcABQAFwAYAAEAAgBMABMAAAAMAAAAAAAAAAwAAAAAABUAAAAAAAAAAAAMAAAADAAAAAEAAgADAAQADgASAAUAGQABAA0AHgANAB4ADQANABYAAAAGAAYABgAPABsAAAAfACIAAAAAABwAHAAGABwAFwAcABoACQARAAoACwAdAAoAGAAGABoACQAAACAAIQAAAAAAAAAIAAcAAAAAAAAAFAAUABAAAAABAAAACgAmAGQAAURGTFQACAAEAAAAAP//AAUAAAABAAIAAwAEAAVhYWx0ACBzczAxACZzczAyACxzczAzADJ0aXRsADgAAAABAAAAAAABAAIAAAABAAMAAAABAAQAAAABAAEABQAMAEYAcACEAJ4AAQAAAAEACAACABoACgAdAB4AHwAgACEAIgAcAD0APgA/AAEACgAEAAUACAAOABAAEgAUACMANQA2AAEAAAABAAgAAgASAAYAHQAeAB8AIAAhACIAAQAGAAQABQAIAA4AEAASAAEAAAABAAgAAQAGABoAAQABACMAAQAAAAEACAACAAoAAgAcAD4AAQACABQANQABAAAAAQAIAAEABgAJAAEAAQA2AAA=") format("opentype");
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+}
+.project-card .project-description > h2 {
+  font-family: "Avantt TRIAL", "Poppins", sans-serif;
+  font-weight: 700;
+}</style><style data-selected-work-header="20260916-three-lines">
+  @font-face { font-family: SelectedWorkAvantt; src: url("data:font/woff2;base64,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") format("woff2"); font-weight: 600; font-style: normal; font-display: swap; }
+  .selected-projects.sw-with-header{padding-top:112px!important}
+  .selected-work-header{display:grid;grid-template-columns:minmax(0,1fr) 330px;align-items:end;align-items:last baseline;gap:64px;margin:0 0 48px;padding:28px 0 32px;border-top:0;border-bottom:1px solid #dce1e4;box-sizing:border-box;letter-spacing:0;color:#000}
+  .selected-work-header .sw-heading{margin:0;font:600 80px/1.08 SelectedWorkAvantt,sans-serif;letter-spacing:0;white-space:nowrap}
+  .selected-work-header .sw-summary{margin:4px 0 0;max-width:330px;font:400 12px/1.4 Poppins,sans-serif;letter-spacing:0;text-transform:uppercase;color:#000;overflow-wrap:normal;text-wrap:balance}
+  .selected-work-header+.project-card{margin-top:0}
+  @media(max-width:991px){.selected-work-header{grid-template-columns:minmax(0,1fr) 230px;gap:40px}.selected-work-header .sw-heading{font-size:64px}}
+  @media(max-width:767px){.selected-projects.sw-with-header{padding-top:80px!important}.selected-work-header{grid-template-columns:1fr;gap:24px;padding:24px 0 28px;margin-bottom:40px}.selected-work-header .sw-heading{font-size:48px}.selected-work-header .sw-summary{margin:0;max-width:360px}}
+  @media(max-width:420px){.selected-work-header .sw-heading{font-size:40px}}
+</style></head>
+
+
+
+
+
+
+
+
+
+<body>
+
+<!-- partial:index.partial.html -->
+<div class="d-none row text-center m-1 position-fixed fixed-top">
+      <div class="col d-block d-sm-none bg-primary rounded-lg">
+         XS
+      </div>
+      <div class="col d-none d-sm-block d-md-none bg-secondary rounded-lg">
+         SM
+      </div>
+      <div class="col d-none d-md-block d-lg-none bg-success rounded-lg">
+         MD
+      </div>
+      <div class="col d-none d-lg-block d-xl-none bg-warning rounded-lg">
+         LG
+      </div>
+      <div class="col d-none d-xl-block bg-danger rounded-lg">
+         XL
+      </div>
+   </div>
+
+<div class="container-fluid overflow-hidden">
+ 
+   <!-- Projects -->
+   <div class="row selected-projects justify-content-center pt-4 sw-with-header">
+      <div class="col-12 col-sm-10 col-xl-8">
+
+
+
+        <!-- Project 1 -->
+       <header class="selected-work-header" aria-labelledby="selected-work-heading">
+  <h2 class="sw-heading" id="selected-work-heading">Featured work</h2>
+  <p class="sw-summary">A selection of interaction design, immersive XR, and digital products, shaped around how people connect, create, and experience technology</p>
+</header><div class="project-card b-o-w left-hand" data-project-title="Microsoft Mesh">
+          <div class="row">
+             <div class="col-12 col-lg-4 d-flex align-items-end">
+                <div class="project-description"><div class="logo24-container row ">
+            <img class="logo24" src="/assets/embed/media/109903_8b03dec04d1e44e4b54ebc5b00024acd-mv2.png" alt="Microsoft logo" style="width: 44px; height: 44px; object-fit: contain;">
+          </div>
+                  <h1>  <img src=" " width="80px" style="margin-bottom: 10px; margin-left: -10px;" alt=""></h1>
+                   <h2 class="Poppinser pop-e" style="font-size: 59px;">Microsoft Mesh</h2>
+                   <div class="lable-container">
+                    <ul class="project-pills" aria-label="Project categories" style="--pill-width: 280px; --pill-height: 42px;"><li>Interaction Design</li><li>VR</li><li>Gesture</li></ul>
+                  </div>
+                   <h3 class="Poppinser pop-w"><em>Controller-free VR interaction built on gestures and a hand cursor.</em></h3>
+                   <p></p>
+                </div>
+             </div>
+             <div class="col-12 col-lg-8">
+                <img class="hero" src="/assets/embed/media/109903_4ce58433a8f140abaae9ec7def1bfe62-mv2.jpg" alt="Microsoft Mesh avatars gathering in an immersive event space">
+                
+             </div>
+          </div>
+          
+          <div class="row d-flex flex-column-reverse flex-lg-row">
+             <div class="col-12 col-lg-4 d-flex align-items-center">
+                <a class="btn btn-primary btn-block btn-view-project shade-mesh  Poppinser pop-t" href="#" onclick="mesh(); return false;">View project</a>
+             </div>
+             <div class="col-12 col-lg">
+                <div class="row project-meta small  Poppinser pop-r">
+                   <div class="col-6">
+                      <strong>Role</strong>
+                      <p>Led interaction design</p>
+                   </div>
+                   <div class="col-6">
+                      <strong>Status</strong>
+                      <p>Shipped &middot; Patented</p>
+                   </div>
+                   <div class="col-6">
+                      <strong>While at</strong>
+                      <p>Microsoft</p>
+                   </div>
+                   <div class="col-6">
+                      <strong>With</strong>
+                      <p>4 designers + design manager</p>
+                   </div>
+                </div>
+             </div>
+          </div>
+       </div><div class="project-card b-o-w" data-project-title="BEYOND">
+        <div class="row">
+          
+           <div class="col-12 col-lg-4 d-flex align-items-end">
+              <div class="project-description"><div class="logo13-container row">
+          <img class="logo13" src="/assets/embed/media/109903_48b1c3ae8976481ca0a8862e90686562-mv2.png">
+        </div>
+                 <h2 class="Poppinser pop-e">BEYOND</h2>
+                 <div class="lable-container">
+                  <ul class="project-pills" aria-label="Project categories" style="--pill-width: 236px; --pill-height: 78px;"><li>Experience Design</li><li>AR/MR</li><li>Interaction</li><li>Product</li></ul>
+                </div>
+                 <h3 class="Poppinser pop-w"><em> A mixed-reality museum experience rooted in interactive experiential learning and participatory social interactions. </em></h3>
+                 <p></p>
+              </div>
+           </div>
+           
+           <div class="col-12 col-lg-8">
+              <video class="hero" src="/assets/media/109903-957b8e3ec3cd4751b458b1718e77be75--29f1da.mp4" poster="/assets/media/109903-957b8e3ec3cd4751b458b1718e77be75--29f1da.webp" autoplay loop muted playsinline></video>
+              <div class="thumb-container d-flex justify-content-between justify-content-md-around justify-content-lg-start flex-lg-column">
+                 <video class="thumb" src="/assets/media/109903-ad36dce5d8b0497cb0428323b85e14eb--34874c.mp4" poster="/assets/media/109903-ad36dce5d8b0497cb0428323b85e14eb--34874c.webp" autoplay loop muted playsinline style="object-position: 50% 50%"></video>
+                 <video class="thumb" src="/assets/media/109903-b1f78de54180449ca433600e0f6c5a47--1bba95.mp4" poster="/assets/media/109903-b1f78de54180449ca433600e0f6c5a47--1bba95.webp" autoplay loop muted playsinline style="object-position: 50% 50%"></video>
+                 <video class="thumb" src="/assets/media/109903-9027626420e74a76acfb1509bf76127b--bdde3e.mp4" poster="/assets/media/109903-9027626420e74a76acfb1509bf76127b--bdde3e.webp" autoplay loop muted playsinline style="object-position: 50% 50%"></video>
+              </div>
+           </div>
+        </div>
+        
+
+        <div class="row d-flex flex-column-reverse flex-lg-row">
+           <div class="col-12 col-lg-4 d-flex align-items-center">
+              <a class="btn btn-primary btn-block btn-view-project shade-morals  Poppinser pop-t" href="#" onclick="beyond()">View project</a>
+           </div>
+           <div class="col-12 col-lg">
+              <div class="row project-meta small  Poppinser pop-r">
+                 <div class="col-6">
+                    <strong>Role</strong>
+                    <p>Designer, Developer</p>
+                 </div>
+                 <div class="col-6 ">
+                    <strong>Time</strong>
+                    <p>Oct to Dec 2021</p>
+                 </div>
+                 <div class="col-6">
+                    <strong>While at</strong>
+                    <p>Carnegie Mellon University</p>
+                 </div>
+                 <div class="col-6">
+                    <strong>With</strong>
+                    <p>Greg, Youngryun, Wei-Chieh</p>
+                 </div>
+              </div>
+           </div>
+        </div>
+     </div>
+
+
+
+        <!-- Project 2 -->
+        <div class="project-card b-o-w left-hand" data-project-title="TikTok Effect House">
+          <div class="row">
+             <div class="col-12 col-lg-4 d-flex align-items-end">
+                <div class="project-description"><div class="logo24-container row ">
+            <img class="logo24" src="/assets/embed/media/109903_29d4aaa8ce614b9aa92cd71dd000cfa0-mv2.png">
+          </div>
+                  <h1>  <img src=" " width="80px" style="margin-bottom: 10px; margin-left: -10px;" alt=""></h1>
+                   <h2 class="Poppinser pop-e" style="font-size: 59px;">TikTok Effect House </h2>
+                   <div class="lable-container">
+                    <ul class="project-pills" aria-label="Project categories" style="--pill-width: 280px; --pill-height: 42px;"><li>Product Design</li><li>UX</li><li>AR</li></ul>
+                  </div>
+                   <h3 class="Poppinser pop-w"><em>A powerful desktop AR tool for TikTok users to create effects.</em></h3>
+                   <p></p>
+                </div>
+             </div>
+             <div class="col-12 col-lg-8">
+                <video class="hero" src="/assets/media/109903-f1015b8bc9ef4344b619884eab934a72--da1bca.mp4" poster="/assets/media/109903-f1015b8bc9ef4344b619884eab934a72--da1bca.webp" autoplay loop muted playsinline></video>
+                <div class="thumb-container d-flex justify-content-between justify-content-md-around justify-content-lg-start flex-lg-column">
+                   <video class="thumb" src="/assets/media/109903-81f7f928ead349af987487064167067b--d74f65.mp4" poster="/assets/media/109903-81f7f928ead349af987487064167067b--d74f65.webp" autoplay loop muted playsinline style="object-position: 50% 50%"></video>
+                   <video class="thumb" src="/assets/media/109903-5d7e5e586af04868b9ec4f14ae6b4a19--ff9d49.mp4" poster="/assets/media/109903-5d7e5e586af04868b9ec4f14ae6b4a19--ff9d49.webp" autoplay loop muted playsinline style="object-position: 50% 50%"></video>
+                   <video class="thumb" src="/assets/media/109903-ef92ca8a55144ff8a11f166b2fb25e56--8afb90.mp4" poster="/assets/media/109903-ef92ca8a55144ff8a11f166b2fb25e56--8afb90.webp" autoplay loop muted playsinline style="object-position: 50% 50%"></video>
+                </div>
+             </div>
+          </div>
+          
+          <div class="row d-flex flex-column-reverse flex-lg-row">
+             <div class="col-12 col-lg-4 d-flex align-items-center">
+                <a class="btn btn-primary btn-block btn-view-project shade-hv  Poppinser pop-t" href="#" onclick="tteh()">View project</a>
+             </div>
+             <div class="col-12 col-lg">
+                <div class="row project-meta small  Poppinser pop-r">
+                   <div class="col-6">
+                      <strong>Role</strong>
+                      <p>Product manager, Product designer</p>
+                   </div>
+                   <div class="col-6">
+                      <strong>Time</strong>
+                      <p>Feb to Aug 2021</p>
+                   </div>
+                   <div class="col-6">
+                      <strong>While at</strong>
+                      <p>ByteDance</p>
+                   </div>
+                   <div class="col-6">
+                      <strong>Supervisor</strong>
+                      <p>Qinzi Tan</p>
+                   </div>
+                </div>
+             </div>
+          </div>
+       </div>
+
+
+
+
+        <!-- Project 3 -->
+         <div class=" project-card b-o-w" data-project-title="Hand MR">
+            <div class="row">
+               <div class="col-12 col-lg-4 d-flex align-items-end">
+                  <div class="project-description"><div class="logo13-container row ">
+              <img class="logo13" src="/assets/embed/media/109903_ac83707a442c490780a3ada51afb5c72-mv2.png">
+            </div>
+                     <h2 class="Poppinser pop-e">Hand MR</h2>
+                     <div class="lable-container">
+                      <ul class="project-pills" aria-label="Project categories" style="--pill-width: 198px; --pill-height: 83px;"><li>MR</li><li>Interaction</li><li>Research</li><li>Gesture</li></ul>
+                    </div>
+                     <h3 class="Poppinser pop-w"><em>Hand Gesture-based Interactions in a Mixed Reality Environment.</em></h3>
+                     <p></p>
+                  </div>
+               </div>
+               <div class="col-12 col-lg">
+                  <video class="hero" src="/assets/media/109903-edec5130d86449828b69c23dea872384--b7f374.mp4" poster="/assets/media/109903-edec5130d86449828b69c23dea872384--b7f374.webp" autoplay loop muted playsinline></video>
+                  <div class="thumb-container d-flex justify-content-between justify-content-sm-around justify-content-lg-start flex-lg-column">
+                     <video class="thumb" src="/assets/media/109903-2768bf76238646b8af731bb9cf2d8f47--d47411.mp4" poster="/assets/media/109903-2768bf76238646b8af731bb9cf2d8f47--d47411.webp" autoplay loop muted playsinline style="object-position: 50% 10%"></video>
+                     <video class="thumb" src="/assets/media/109903-3a10dfc780534bcfa7a7c2df26fd2aae--cb5be0.mp4" poster="/assets/media/109903-3a10dfc780534bcfa7a7c2df26fd2aae--cb5be0.webp" autoplay loop muted playsinline style="object-position: 45% 100%"></video>
+                     <video class="thumb" src="/assets/media/109903-322141a5cada4390b70155b969db3c84--dd7054.mp4" poster="/assets/media/109903-322141a5cada4390b70155b969db3c84--dd7054.webp" autoplay loop muted playsinline style="object-position: 50% 0"></video>
+                  </div>
+               </div>
+            </div>
+            
+            <div class="row d-flex flex-column-reverse flex-lg-row">
+               <div class="col-12 col-lg-4 d-flex align-items-center">
+                  <a class="btn btn-primary btn-block btn-view-project shade-echo  Poppinser pop-t" href="#" id="viewproject" onclick="mr()">View project</a>
+               </div>
+               <div class="col-12 col-lg">
+                  <div class="row project-meta small  Poppinser pop-r">
+                     <div class="col-6">
+                        <strong>Role</strong>
+                        <p>Individual Project</p>
+                     </div>
+                     <div class="col-6">
+                        <strong>Time</strong>
+                        <p>May to December 2019</p>
+                     </div>
+                     <div class="w-100 m-1 d-md-none"></div>
+                     <div class="col-6">
+                        <strong>While at</strong>
+                        <p>RCH Studios</p>
+                     </div>
+                     <div class="col-6">
+                      <strong>Supervisor</strong>
+                      <p>Bob Frederick &amp; Clancy Pearson</p>
+                   </div>
+                  </div>
+               </div>
+            </div>
+         </div>
+
+
+         
+         <!-- <div class='project-card b-o-w'>
+            <div class='row'>
+               <div class='col-12 col-lg-4 d-flex align-items-end'>
+                  <div class='project-description'>
+                     <h2 class="Poppinser pop-e">Echo of Brain</h2>
+                     <h3 class="Poppinser pop-w">Brainwave-controlled Transformational Cubes</h3>
+                     <p>EMOTIV Epoc+ headset and Electroencephalography are employed to bridge the realities between the physical and digital world, and to allow our physical model to respond to their context through physical transformation and digital interface “intelligently”.</p>
+                  </div>
+               </div>
+               <div class='col-12 col-lg-8'>
+                  <img class="hero" src='/assets/media/109903-6396b477cb41487e83a32526d2ac36b2--2eebae.mp4'>
+                  <div class='thumb-container d-flex justify-content-between justify-content-md-around justify-content-lg-start flex-lg-column'>
+                     <img class='thumb' src='/assets/media/109903-923c76b9a34f45379aa97fbd8adeb585--8add31.mp4' style='object-position: 20% 50%'>
+                     <img class='thumb' src='/assets/media/109903-ec0403fb817f4d779244cca7df0a09f5--753e75.mp4' style='object-position: 30% 50%'>
+                     <img class='thumb' src='/assets/media/109903-4ed3ce8ef58847b090b5f7c10f9c887d--a83366.mp4' style='object-position: 50% 50%'>
+                  </div>
+               </div>
+            </div>
+            <div class='logo13-container row '>
+              <img class="logo13 " src='/assets/embed/media/109903_9da6d991fa2241b58cc1e4106b28d240-mv2.png'> 
+            </div>
+            <div class='row d-flex flex-column-reverse flex-lg-row'>
+               <div class='col-12 col-lg-4 d-flex align-items-center'>
+                  <a class='btn btn-primary btn-block btn-view-project shade-morals  Poppinser pop-t' href='#' onclick="brain()">View project</a>
+               </div>
+               <div class='col-12 col-lg'>
+                  <div class='row project-meta small  Poppinser pop-r'>
+                     <div class='col'>
+                        <strong>Role</strong>
+                        <p>Designer, Developer</p>
+                     </div>
+                     <div class='col'>
+                        <strong>Time</strong>
+                        <p>September 2016 to December 2016</p>
+                     </div>
+                     <div class='col'>
+                        <strong>While at</strong>
+                        <p>UCLA Tech Studio</p>
+                     </div>
+                     <div class='col'>
+                        <strong>With</strong>
+                        <p>Wai Ching Cheng</p>
+                     </div>
+                  </div>
+               </div>
+            </div>
+         </div> -->
+
+
+         <div class="project-card b-o-w left-hand" data-project-title="Nomadic Cloud">
+            <div class="row">
+               <div class="col-12 col-lg-4 d-flex align-items-end">
+                  <div class="project-description"><div class="logo24-container row ">
+              <img class="logo24 " src="/assets/embed/media/109903_fb5637aca3c44d8bac003278b9e6ac3e-mv2.png"> 
+            </div>
+                     <h2 class="Poppinser pop-e">Nomadic Cloud</h2>
+                     <div class="lable-container">
+                      <ul class="project-pills" aria-label="Project categories" style="--pill-width: 252px; --pill-height: 79px;"><li>Mars</li><li>Architecture</li><li>AR</li><li>3D Animation</li></ul>
+                    </div>
+                     <h3 class="Poppinser pop-w"><em>A 3D printed habitat on Mars for a group of four astronauts.</em></h3>
+                     <p></p>
+                  </div>
+               </div>
+               <div class="col-12 col-lg-8">
+                  <img class="hero" src="/assets/embed/media/109903_d768c1e2e3f248b59e3f39b0354b75ea-mv2.jpg">
+               </div>
+            </div>
+            
+            <div class="row d-flex flex-column-reverse flex-lg-row">
+               <div class="col-12 col-lg-4 d-flex align-items-center">
+                  <a class="btn btn-primary btn-block btn-view-project shade-whatif  Poppinser pop-t" href="#" onclick="mars()">View project</a>
+               </div>
+               <div class="col-12 col-lg">
+                  <div class="row project-meta small  Poppinser pop-r">
+                     <div class="col">
+                        <strong>Time</strong>
+                        <p>April 2017 to Ongoing</p>
+                     </div>
+                     <div class="col">
+                        <strong>With</strong>
+                        <p>Wai Ching Cheng</p>
+                     </div>
+                  </div>
+               </div>
+            </div>
+
+         </div>
+      </div>
+   </div>
+
+
+</div>
+<!-- partial -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.2.1/js/bootstrap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/tilt.js/1.2.1/tilt.jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/is_js/0.9.0/is.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/vanilla-tilt/1.7.2/vanilla-tilt.min.js"></script>
+<script>
+
+if (is.desktop()) {
+  const cards = $('.project-card');
+  cards.tilt({
+    maxTilt: 20,
+    perspective: 1500
+  });
+  cards.each(function () {
+    const card = $(this);
+    const origin = card.offset();
+    this.mousePositions = {
+      x: origin.left + card.outerWidth() / 2,
+      y: origin.top + card.outerHeight() / 2
+    };
+  });
+  cards.on('tilt.mouseEnter.portfolioShadow tilt.mouseLeave.portfolioShadow', function () {
+    this.style.transition = 'transform ' + this.settings.speed + 'ms ' + this.settings.easing + ', box-shadow 2s ease';
+  });
+}
+   
+//    const element =  document.querySelector('.animated-hand')
+//    element.addEventListener('mouseenter', function() 
+//    {
+//       element.classList.remove('jackInTheBox', 'delay-1s', 'animated')
+//       element.classList.add('animated', 'tada')
+//    }
+//    )
+//    element.addEventListener('mouseout', function() 
+//    {element.classList.remove('animated', 'tada')  }
+//    )
+// } 
+
+function beyond() {
+    window.top.location.href="/beyond";
+  }
+
+  function tteh() {
+    window.top.location.href="/tteh";
+  }
+
+
+function mr() {
+    window.top.location.href="/mr";
+  }
+
+  function brain() {
+    window.top.location.href="/brain";
+  }
+function mars() {
+    window.top.location.href="/mars";
+  }
+
+</script>
+
+
+
+<script data-mesh-navigation="20260913">function mesh() { window.top.location.href="/mesh"; }</script></body></html>
