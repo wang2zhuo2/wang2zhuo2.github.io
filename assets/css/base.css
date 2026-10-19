@@ -12,6 +12,8 @@ body{margin:0;overflow-x:hidden;font-family:Arial,Helvetica,sans-serif}
 @media (max-width:767px){.D{display:none}.M{display:block}}
 .hdr,.pg,.ftr{position:relative;width:100%;display:block}
 .hdr{z-index:50}
+.D .hdr{position:sticky;top:0;transition:transform .3s ease}
+.D .hdr.hide{transform:translateY(-100%)}
 .pg{z-index:1}
 .ftr{z-index:2}
 .c{position:absolute;margin:0}

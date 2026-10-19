@@ -14,6 +14,18 @@
     return true;
   }
 
+  // Desktop header (Wix "disappears" effect): hides while scrolling down, returns after ~450px of scrolling up.
+  var hdr = d.querySelector('.D .hdr');
+  if (hdr) {
+    var lastY = w.scrollY, upAcc = 0;
+    w.addEventListener('scroll', function () {
+      var y = w.scrollY, dy = y - lastY; lastY = y;
+      if (y <= hdr.offsetHeight) { hdr.classList.remove('hide'); upAcc = 0; return; }
+      if (dy > 0) { upAcc = 0; hdr.classList.add('hide'); }
+      else if (dy < 0) { upAcc -= dy; if (upAcc >= 450) hdr.classList.remove('hide'); }
+    }, {passive: true});
+  }
+
   // Lazy video sources: only videos in the visible layout load; they pause when off-screen.
   var vio = 'IntersectionObserver' in w ? new IntersectionObserver(function (es) {
     es.forEach(function (en) {
