@@ -82,11 +82,51 @@
     });
   }
 
+  // Visitor analytics (Umami). No-op when the tracker is absent or blocked.
+  function track(name, data) {
+    try { if (w.umami && w.umami.track) w.umami.track(name, data); } catch (err) {}
+  }
+
+  // Time on page: seconds the page was visible and the visitor not idle for 5+ minutes, plus the furthest scroll
+  // point (%). Reported when the visitor leaves or switches away, then again for each later stretch. Nothing is
+  // reported for a page seen under 10 s, so a short single-page visit still counts as a bounce in Umami.
+  (function () {
+    var IDLE = 300000, engaged = 0, reported = 0, depth = 0, vis = d.visibilityState === 'visible';
+    var lastTick = Date.now(), lastAct = lastTick;
+    function tick() {
+      var t = Date.now();
+      if (vis && t - lastAct < IDLE) engaged += Math.min(t - lastTick, 5000);
+      lastTick = t;
+    }
+    function scrolled() {
+      var h = d.documentElement.scrollHeight;
+      depth = Math.max(depth, h ? Math.min(100, Math.round((w.scrollY + w.innerHeight) / h * 100)) : 100);
+    }
+    function report() {
+      tick(); scrolled();
+      var s = Math.round((engaged - reported) / 1000);
+      if (engaged < 10000 || s < 1) return;
+      reported = engaged;
+      track('time-on-page', {page: location.pathname, seconds: s, scroll: depth});
+    }
+    function seen() { tick(); vis = d.visibilityState === 'visible'; lastAct = Date.now(); }
+    setInterval(tick, 1000);
+    ['pointerdown', 'pointermove', 'keydown', 'wheel', 'touchstart'].forEach(function (t) {
+      w.addEventListener(t, function () { lastAct = Date.now(); }, {passive: true, capture: true});
+    });
+    w.addEventListener('scroll', function () { lastAct = Date.now(); scrolled(); }, {passive: true});
+    d.addEventListener('visibilitychange', function () { if (d.visibilityState === 'hidden') { report(); vis = false; } else seen(); });
+    w.addEventListener('pagehide', report);
+    w.addEventListener('pageshow', function (e) { if (e.persisted) seen(); });
+    scrolled();
+  })();
+
   d.addEventListener('click', function (e) {
     var a = e.target.closest && e.target.closest('a');
     if (!a) return;
     if (a.dataset.lightbox === 'vimeo') {
       e.preventDefault();
+      track('showreel-open');
       open('<iframe src="https://player.vimeo.com/video/1237053593?autoplay=true&muted=true&loop=false&byline=false&portrait=false&title=false" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen title="Showreel"></iframe>');
       return;
     }
@@ -99,6 +139,11 @@
       return;
     }
     var href = a.getAttribute('href') || '';
+    if (/^mailto:/i.test(href)) track('email-click');
+    else if (/^https?:/i.test(href) && a.hostname !== location.hostname && !/(^|\.)zonenwang\.com$/i.test(a.hostname)) {
+      if (/(^|\.)linkedin\.com$/i.test(a.hostname)) track('linkedin-click');
+      else track('outbound-click', {url: a.href});
+    }
     if (href.charAt(0) === '#' && href.length > 1 && go(href.slice(1), true)) {
       e.preventDefault();
       var mm = a.closest('.mm'); if (mm) toggleMenu(false);
