@@ -10,7 +10,7 @@ Personal portfolio of Zonen Wang, served by GitHub Pages from this repository (`
 | `mesh.html`, `beyond.html`, `tteh.html`, `mr.html`, `brain.html`, `mars.html` | Project pages (served as `/mesh`, `/beyond`, …) |
 | `assets/css/base.css` | Hand-written layout, menu, lightbox and slider styles |
 | `assets/css/site.css` | Generated: fonts + `base.css` + shared text styles |
-| `assets/js/site.js` | Scaling, lazy video, parallax, menus, lightbox, slider, chapter menu |
+| `assets/js/site.js` | Scaling, lazy video, parallax, menus, lightbox, slider, chapter menu, analytics events |
 | `assets/img`, `assets/media`, `assets/video` | Images (WebP), converted GIFs (MP4), videos (MP4) |
 | `assets/embed` | Custom HTML embeds (featured cards, name animation, footer) |
 | `404.html`, `robots.txt`, `sitemap.xml` | Standard site files |
@@ -25,6 +25,19 @@ so the composition stays identical at any size.
   (mobile) blocks. Positions are absolute, so keep edits similar in length or adjust the following elements' `top`.
 - **Images:** replace a file in `assets/img` with one of the same name and aspect ratio.
 - Push to `main` and the site updates in about a minute.
+
+## Analytics
+
+Every page (not the embeds) loads the cookieless [Umami Cloud](https://cloud.umami.is) tracker, which records
+page views, referrers, UTM tags, location and device. `site.js` adds these events:
+
+| Event | When |
+| --- | --- |
+| `time-on-page` | The visitor leaves or switches away after looking at a page for 10 s or more. `seconds` counts only visible, non-idle time (idle = 5+ minutes without input); `scroll` is the furthest point reached (%). |
+| `showreel-open` | The showreel is opened |
+| `email-click`, `linkedin-click`, `outbound-click` | Email, LinkedIn and other external links (`url`) |
+
+Opening any page with `#notrack` stops counting visits from that browser; `#track` resumes.
 
 ## Fonts
 
