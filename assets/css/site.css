@@ -377,6 +377,20 @@ a.sv{display:block}
 .fxl{position:relative;z-index:60}
 .vb{overflow:hidden;transform:translateZ(0)}
 .gi{display:block;cursor:zoom-in;overflow:hidden}
+/* Photography: masonry gallery in document flow (tools/g_photos.py) */
+.pg.pg-gal{display:flow-root}
+.pgal{position:relative;box-sizing:content-box}
+.pgal-cols{display:flex;align-items:flex-start;gap:var(--gap)}
+.pgal-col{flex:1 1 0;min-width:0;display:flex;flex-direction:column;gap:var(--gap)}
+.pgi{position:relative;background:#f0f0f0;border-radius:2px}
+.pgi img{display:block;width:100%;height:100%;transition:transform .7s cubic-bezier(.2,.7,.2,1),filter .4s}
+@media (hover:hover){.pgi:hover img{transform:scale(1.03)}}
+.pgi:focus-visible{outline:2px solid #D9781F;outline-offset:2px}
+/* Photo strips (a set of 7): stacked-photos badge */
+.pgi[data-tall]::after{content:"";position:absolute;top:10px;right:10px;width:22px;height:22px;pointer-events:none;
+  background:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23fff' stroke-width='2' stroke-linejoin='round'%3E%3Crect x='3' y='7' width='14' height='14' rx='2.5'/%3E%3Cpath d='M7 3h11.5A2.5 2.5 0 0 1 21 5.5V17'/%3E%3C/svg%3E") center/contain no-repeat;
+  filter:drop-shadow(0 1px 2px rgba(0,0,0,.55))}
+.M .pgi[data-tall]::after{top:6px;right:6px;width:14px;height:14px}
 /* Horizontal photo slider (Wix Pro Gallery) */
 .sl{overflow:hidden}
 .sl-t{display:flex;height:100%;overflow-x:auto;overflow-y:hidden;scroll-snap-type:x mandatory;scroll-behavior:smooth;scrollbar-width:none;-webkit-overflow-scrolling:touch}
@@ -419,6 +433,11 @@ a.sv{display:block}
 .lb.gal .lb-prev,.lb.gal .lb-next{display:block;position:fixed;top:50%;transform:translateY(-50%);width:48px;height:64px;border:0;background:transparent;color:#fff;font-size:44px;line-height:64px;cursor:pointer;z-index:2;opacity:.8}
 .lb.gal .lb-prev{left:8px}
 .lb.gal .lb-next{right:8px}
+/* Tall photo strips scroll vertically at a readable width */
+.lb.gal.tall{align-items:flex-start;overflow-y:auto;overscroll-behavior:contain;background:rgba(0,0,0,.92)}
+.lb.gal.tall .lb-ov{background:transparent}
+.lb.gal.tall .lb-box{margin:48px 0}
+.lb.gal.tall .lb-media img{width:min(560px,80vw);max-width:none;max-height:none}
 
 .t0{font-family:"Poppins",sans-serif;font-weight:600;font-size:15px;font-style:normal;line-height:40px;letter-spacing:normal;color:rgb(210, 160, 110);text-align:end;white-space:nowrap;list-style-type:none;padding-left:10px;padding-right:10px}
 .t1{font-family:"Poppins",sans-serif;font-weight:600;font-size:15px;font-style:normal;line-height:40px;letter-spacing:normal;color:rgb(51, 51, 51);text-align:end;white-space:nowrap;list-style-type:none;padding-left:10px;padding-right:10px}

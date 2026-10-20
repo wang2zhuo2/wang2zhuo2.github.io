@@ -53,14 +53,17 @@
     media.innerHTML = html; lb.classList.toggle('gal', !!isGal); lb.hidden = false;
     d.documentElement.style.overflow = 'hidden';
   }
-  function close() { lb.hidden = true; media.innerHTML = ''; d.documentElement.style.overflow = ''; }
+  function close() { lb.hidden = true; lb.classList.remove('tall'); media.innerHTML = ''; d.documentElement.style.overflow = ''; }
   function showPhoto(i) {
     gi = (i + gal.length) % gal.length;
     var a = gal[gi], im = a.querySelector('img,video');
     open('<img src="' + a.getAttribute('href') + '" alt="' + ((im && im.getAttribute('alt')) || '') + '">', true);
+    lb.classList.toggle('tall', a.dataset.tall === '1');
+    lb.scrollTop = 0;
   }
   if (lb) {
     lb.querySelector('.lb-ov').addEventListener('click', close);
+    lb.addEventListener('click', function (e) { if (e.target === lb) close(); });
     lb.querySelector('.lb-x').addEventListener('click', close);
     lb.querySelector('.lb-prev').addEventListener('click', function () { showPhoto(gi - 1); });
     lb.querySelector('.lb-next').addEventListener('click', function () { showPhoto(gi + 1); });
@@ -90,6 +93,8 @@
     if (a.dataset.gallery) {
       e.preventDefault();
       gal = Array.prototype.slice.call(tree().querySelectorAll('a[data-gallery="' + a.dataset.gallery + '"]'));
+      // Masonry columns change the DOM order; browse in the original photo order.
+      gal.sort(function (x, y) { return (+x.dataset.i || 0) - (+y.dataset.i || 0); });
       showPhoto(gal.indexOf(a));
       return;
     }
