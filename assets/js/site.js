@@ -300,4 +300,15 @@
     sheet.querySelector('.toc-sheet-ov').addEventListener('click', function () { toggleSheet(false); });
     d.addEventListener('keydown', function (e) { if (e.key === 'Escape' && !sheet.hidden) toggleSheet(false); });
   }
+
+  // About: a project named in the story and its evidence tile highlight each other.
+  d.querySelectorAll('[data-ev]').forEach(function (el) {
+    var mark = function (on) {
+      el.closest('.D,.M').querySelectorAll('[data-ev="' + el.dataset.ev + '"]').forEach(function (x) { x.classList.toggle('hl', on); });
+    };
+    el.addEventListener('mouseenter', function () { mark(true); });
+    el.addEventListener('mouseleave', function () { mark(false); });
+    el.addEventListener('focus', function () { mark(true); });
+    el.addEventListener('blur', function () { mark(false); });
+  });
 })();

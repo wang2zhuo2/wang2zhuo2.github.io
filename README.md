@@ -12,6 +12,7 @@ Personal portfolio of Zonen Wang, served by GitHub Pages from this repository (`
 | `assets/css/site.css` | Generated: fonts + `base.css` + shared text styles |
 | `assets/js/site.js` | Scaling, lazy video, parallax, menus, lightbox, slider, chapter menu, analytics events |
 | `assets/img`, `assets/media`, `assets/video` | Images (WebP), converted GIFs (MP4), videos (MP4) |
+| `assets/img/about` | Generated About images: evidence frames and project logo chips (`tools/g_about.py`) |
 | `assets/embed` | Custom HTML embeds (featured cards, name animation, footer) |
 | `404.html`, `robots.txt`, `sitemap.xml` | Standard site files |
 
