@@ -812,7 +812,26 @@ body strong {
   @media(max-width:991px){.selected-work-header{grid-template-columns:minmax(0,1fr) 230px;gap:40px}.selected-work-header .sw-heading{font-size:64px}}
   @media(max-width:767px){.selected-projects.sw-with-header{padding-top:80px!important}.selected-work-header{grid-template-columns:1fr;gap:24px;padding:24px 0 28px;margin-bottom:40px}.selected-work-header .sw-heading{font-size:48px}.selected-work-header .sw-summary{margin:0;max-width:360px}}
   @media(max-width:420px){.selected-work-header .sw-heading{font-size:40px}}
-</style></head>
+</style><style data-other-projects>
+.other-work-header{height:130px;margin:0 0 40px}
+.other-work-header .sw-heading{font-size:56px}
+.op-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:24px;height:360px;margin:0 0 100px;padding:0}
+.op-card{display:flex;flex-direction:column;height:360px;border-radius:16px;background:#fff;overflow:hidden;color:#1c1e20;
+box-shadow:0 6px 18px rgba(0,0,0,.14);text-decoration:none!important;transition:transform .35s ease,box-shadow .35s ease}
+.op-card:hover,.op-card:focus-visible{color:#1c1e20;transform:translateY(-6px);box-shadow:0 14px 30px rgba(0,0,0,.2)}
+.op-media{flex:none;height:184px;overflow:hidden;background:#e8e6e3}
+.op-media video{display:block;width:100%;height:100%;object-fit:cover;transition:transform .6s ease}
+.op-card:hover .op-media video{transform:scale(1.04)}
+.op-body{display:flex;flex-direction:column;flex:1;min-height:0;padding:16px 20px 18px}
+.op-meta{margin:0 0 6px;font:500 11px/16px Poppins,sans-serif;letter-spacing:.08em;text-transform:uppercase;color:#8a8a8a}
+.op-title{margin:0;font:700 24px/1.1 "Avantt TRIAL",Poppins,sans-serif;color:#1c1e20}
+.op-line{display:-webkit-box;margin:8px 0 0;overflow:hidden;font:300 14px/20px Poppins,sans-serif;color:#3d3d3d;
+-webkit-line-clamp:2;-webkit-box-orient:vertical}
+.op-pills{display:flex;flex-wrap:nowrap;gap:6px;margin:auto 0 0;padding:0;overflow:hidden;list-style:none}
+.op-pills li{flex:none;padding:1px 9px;border:1px solid #8c8c8c;border-radius:999px;color:#575757;
+font:500 11px/18px Poppins,sans-serif;white-space:nowrap}
+</style>
+</head>
 
 
 
@@ -1155,6 +1174,9 @@ body strong {
             </div>
 
          </div>
+
+<header class="selected-work-header other-work-header" id="other-projects" aria-labelledby="other-work-heading"><h2 class="sw-heading" id="other-work-heading">Other projects</h2><p class="sw-summary">Hardware prototypes: soft grippers for industrial robot arms, brainwave input, and a real paddle as a VR controller.</p></header><div class="op-grid"><a class="op-card" href="/soft" target="_top" data-project-title="Soft Robotic Arm"><div class="op-media"><video data-src="/assets/media/other/soft-card-b706ca.mp4" data-poster="/assets/img/other/soft-poster-181c2a.webp" muted loop playsinline preload="none" aria-hidden="true"></video></div><div class="op-body"><p class="op-meta">UCLA · 2016</p><h3 class="op-title">Soft Robotic Arm</h3><p class="op-line">Inflatable silicone grippers that help two robot arms lift an object.</p><ul class="op-pills" aria-label="Project categories"><li>Robotics</li><li>Arduino</li><li>Fabrication</li></ul></div></a><a class="op-card" href="/brain" target="_top" data-project-title="Echo of Brain"><div class="op-media"><video data-src="/assets/media/other/brain-card-e79c2a.mp4" data-poster="/assets/img/other/brain-poster-10c350.webp" muted loop playsinline preload="none" aria-hidden="true"></video></div><div class="op-body"><p class="op-meta">UCLA · 2016</p><h3 class="op-title">Echo of Brain</h3><p class="op-line">A brainwave headset drives motors that lift and turn a surface of cubes.</p><ul class="op-pills" aria-label="Project categories"><li>Brainwaves</li><li>Arduino</li><li>Servos</li></ul></div></a><a class="op-card" href="/kayak" target="_top" data-project-title="VR Kayaking"><div class="op-media"><video data-src="/assets/media/other/kayak-card-17351c.mp4" data-poster="/assets/img/other/kayak-poster-e24fd2.webp" muted loop playsinline preload="none" aria-hidden="true"></video></div><div class="op-body"><p class="op-meta">RIOS · 2019</p><h3 class="op-title">VR Kayaking</h3><p class="op-line">Sit in a real kayak; a tracked paddle steers the boat in VR.</p><ul class="op-pills" aria-label="Project categories"><li>VR</li><li>Unity</li><li>Physical input</li></ul></div></a></div>
+
       </div>
    </div>
 

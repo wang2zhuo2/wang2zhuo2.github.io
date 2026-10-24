@@ -208,3 +208,84 @@ a.sv{display:block}
 .M .ab-rec li{gap:8px;padding:5px 0;font-size:9.4px}
 .M .ab-rec li a span{font-size:8px}
 .M .ab-ph{border-radius:8px}
+
+/* Other projects (tools/g_other.py): the mobile home list, and the compact project pages (Soft Robotic Arm, VR Kayaking)
+   styled after Echo of Brain. Desktop sizes are in the 1440 layout, mobile sizes in the 320 layout. */
+.op-m{font-family:"Poppins",sans-serif}
+.op-m-h{height:28px;margin:0;padding:0 12px;font:700 24px/28px Avantt,Poppins,sans-serif;color:rgb(41,41,41)}
+.op-m-sum{height:44px;margin:6px 0 0;padding:0 12px;overflow:hidden;font-size:10px;line-height:14.4px;color:rgb(68,68,68)}
+.op-m-list{display:grid;grid-template-rows:repeat(3,100px);gap:12px;margin-top:19px}
+.op-m-row{display:flex;align-items:center;gap:12px;padding:0 14px 0 12px;border-radius:15px;background:rgb(248,247,245);box-shadow:rgba(0,0,0,.09) 0 2px 16px 0;color:rgb(41,41,41);text-decoration:none}
+.op-m-row img{flex:none;width:96px;height:72px;border-radius:8px;object-fit:cover}
+.op-m-t{display:flex;flex-direction:column;min-width:0}
+.op-m-t small{font-size:7.5px;font-weight:500;line-height:10px;letter-spacing:.08em;text-transform:uppercase;color:#8a8a8a}
+.op-m-t b{margin:2px 0 3px;font:700 15px/17px Avantt,Poppins,sans-serif}
+.op-m-t span{display:-webkit-box;overflow:hidden;font-size:9.5px;line-height:13px;color:rgb(68,68,68);-webkit-line-clamp:3;-webkit-box-orient:vertical}
+.xp{font-family:"GT Walsheim Pro",Poppins,sans-serif;color:#333}
+.xp-hero{position:relative;overflow:hidden;background:#1b1b1b}
+.xp-hero-img{position:absolute;inset:0;display:block;width:100%;height:100%;object-fit:cover}
+.xp-hero::after{content:"";position:absolute;inset:0;background:linear-gradient(0deg,rgba(0,0,0,.62) 0%,rgba(0,0,0,.25) 38%,rgba(0,0,0,0) 62%)}
+.xp-hero-t{position:absolute;z-index:1}
+.xp-h1{margin:0;font-family:Avantt,Poppins,sans-serif;font-weight:600;color:#f5f5f5}
+.xp-sub{margin:0;font-weight:300;color:#dedede}
+.xp-meta{display:grid;margin:0}
+.xp-meta dt{font-weight:700}
+.xp-meta dd{margin:0}
+.xp-h2{position:relative;margin:0;font-weight:700;color:#333}
+.xp-h2::before{content:"";position:absolute;left:0;top:0;width:30px;height:5px;background:rgb(210,160,110)}
+.xp-cap{margin:0;font-weight:700;color:rgb(113,112,112)}
+.xp-ov{border-left:3px solid rgb(210,160,110);border-radius:0 6px 6px 0;background:rgb(243,243,243)}
+.xp-ov p{margin:0;color:#454545}
+.xp-ov .xp-lead{font-weight:700;color:rgb(210,160,110)}
+.xp-film{display:block;width:100%;aspect-ratio:16/9;border-radius:8px;background:#000}
+.xp-grid{display:grid}
+.xp-fig{margin:0}
+.xp-ph{display:block;overflow:hidden;border-radius:6px;cursor:zoom-in}
+.xp-ph img{display:block;width:100%;height:auto;transition:transform .5s ease}
+@media (hover:hover){.xp-ph:hover img{transform:scale(1.02)}}
+.xp-fig figcaption{font-weight:700;color:rgb(113,112,112)}
+.xp-code{margin:0;overflow:auto;border-radius:8px;background:#1f2127;color:#e8e8e8;white-space:pre;font-family:ui-monospace,SFMono-Regular,Consolas,"Liberation Mono",monospace}
+.D .xp-hero{height:720px}
+.D .xp-hero-t{left:calc(50% - 624px);bottom:64px}
+.D .xp-h1{font-size:80px;line-height:1.05}
+.D .xp-sub{margin-top:12px;font-size:30px;line-height:1.3}
+.D .xp-meta{column-gap:40px;width:1248px;margin:40px 0 0 calc(50% - 624px)}
+.D .xp-n4{grid-template-columns:repeat(4,minmax(0,1fr))}
+.D .xp-n5{grid-template-columns:repeat(5,minmax(0,1fr))}
+.D .xp-meta dt{font-size:20px}
+.D .xp-meta dd{margin-top:4px;font-size:20px;line-height:1.35}
+.D .xp-sec{display:grid;grid-template-columns:283px 719px;column-gap:96px;width:1098px;margin:120px 0 0 calc(50% - 624px)}
+.D .xp-meta+.xp-sec{margin-top:96px}
+.D .xp-h2{padding-top:17px;font-size:30px;line-height:1.2}
+.D .xp-cap{margin-top:14px;font-size:18px;line-height:1.4}
+.D .xp-ov{padding:22px 28px}
+.D .xp-ov p{font-size:20px;line-height:1.5}
+.D .xp-ov p+p{margin-top:16px}
+.D .xp-grid{gap:16px}
+.D .xp-grid+.xp-grid{margin-top:16px}
+.D .xp-g2{grid-template-columns:1fr 1fr}
+.D .xp-g3{grid-template-columns:repeat(3,1fr)}
+.D .xp-fig figcaption{margin-top:8px;font-size:16px}
+.D .xp-code{padding:22px 24px;font-size:12.5px;line-height:1.6}
+.M .xp-hero{height:240px}
+.M .xp-hero-t{left:20px;right:20px;bottom:16px}
+.M .xp-h1{font-size:28px;line-height:1.08}
+.M .xp-sub{margin-top:6px;font-size:13px;line-height:1.3}
+.M .xp-meta{grid-template-columns:1fr 1fr;gap:12px 16px;margin:22px 20px 0}
+.M .xp-meta dt{font-size:13px}
+.M .xp-meta dd{margin-top:2px;font-size:11.1px;line-height:1.35}
+.M .xp-sec{margin:44px 20px 0}
+.M .xp-h2{padding-top:11px;font-size:20px;line-height:1.2}
+.M .xp-h2::before{width:24px;height:4px}
+.M .xp-cap{margin-top:8px;font-size:12px;line-height:1.4}
+.M .xp-r{margin-top:14px}
+.M .xp-ov{padding:14px 16px}
+.M .xp-ov p{font-size:12px;line-height:1.5}
+.M .xp-ov p+p{margin-top:10px}
+.M .xp-grid{gap:8px}
+.M .xp-grid+.xp-grid{margin-top:8px}
+.M .xp-g2{grid-template-columns:1fr 1fr}
+.M .xp-g3{grid-template-columns:repeat(3,1fr)}
+.M .xp-fig figcaption{margin-top:4px;font-size:10px}
+.M .xp-film{border-radius:6px}
+.M .xp-code{padding:12px;font-size:7.4px;line-height:1.55}
