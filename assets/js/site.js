@@ -311,4 +311,102 @@
     el.addEventListener('focus', function () { mark(true); });
     el.addEventListener('blur', function () { mark(false); });
   });
+
+  // Footer lines: a sparse gold line network behind the contact block, drifting at an even pace. A soft light eases
+  // toward the mouse (on phones it wanders on its own and follows a touch on the footer): lines near it brighten and
+  // points there part instead of gathering. It runs only while the footer is on screen and stays still for visitors
+  // who prefer reduced motion.
+  (function () {
+    var cvs = [].slice.call(d.querySelectorAll('.ffx canvas'));
+    if (!cvs.length) return;
+    var still = !!(w.matchMedia && w.matchMedia('(prefers-reduced-motion: reduce)').matches);
+    var cv = null, ctx = null, W = 0, H = 0, s = 1, raf = 0, last = 0, vis = false, pts = null, L = null, ptr = null, ptrAt = -1e9;
+    function rgba(a) { return 'rgba(210,160,110,' + Math.min(1, a).toFixed(3) + ')'; }
+    function smooth(e0, e1, x) { var t = Math.max(0, Math.min(1, (x - e0) / (e1 - e0))); return t * t * (3 - 2 * t); }
+    function glow(x, y, R) { var dx = x - L.x, dy = y - L.y; return Math.exp(-(dx * dx + dy * dy) / (R * R)); }
+    function edge(x) { var m = W * 0.08; return smooth(0, m, x) * smooth(0, m, W - x); }
+    function size() {
+      var c = null;
+      for (var i = 0; i < cvs.length; i++) if (cvs[i].getClientRects().length) { c = cvs[i]; break; }
+      if (!c) return false;
+      var r = c.getBoundingClientRect(), nw, nh;
+      s = Math.min(w.devicePixelRatio || 1, 2);
+      nw = Math.round(r.width * s); nh = Math.round(r.height * s);
+      if (c !== cv) { cv = c; ctx = c.getContext('2d'); pts = null; L = null; }
+      if (c.width !== nw || c.height !== nh) {
+        // The points keep their place in the footer when it changes size (rotation, zoom).
+        if (pts && c.width && c.height) pts.forEach(function (p) { p.x *= nw / c.width; p.y *= nh / c.height; });
+        c.width = nw; c.height = nh;
+      }
+      W = nw; H = nh;
+      return W > 0 && H > 0;
+    }
+    function draw(dt) {
+      var i, j;
+      if (!pts) {
+        var n = Math.max(26, Math.min(64, Math.round(W * H / (s * s * 6500))));
+        pts = [];
+        for (i = 0; i < n; i++) {
+          // 14 to 30 px a second, each in its own direction; points wrap around the edges.
+          var an = Math.random() * 6.2832, v = (14 + Math.random() * 16) * s;
+          pts.push({x: Math.random() * W, y: Math.random() * H, vx: Math.cos(an) * v, vy: Math.sin(an) * v});
+        }
+      }
+      var D = Math.max(95 * s, Math.min(170 * s, W * 0.14)), R = Math.max(W * 0.2, 140 * s), P = [];
+      pts.forEach(function (p) {
+        p.x += p.vx * dt; p.y += p.vy * dt;
+        if (p.x < -20) p.x += W + 40; else if (p.x > W + 20) p.x -= W + 40;
+        if (p.y < -20) p.y += H + 40; else if (p.y > H + 20) p.y -= H + 40;
+        var g = glow(p.x, p.y, R), ddx = p.x - L.x, ddy = p.y - L.y, dd = Math.sqrt(ddx * ddx + ddy * ddy) || 1;
+        P.push({x: p.x + ddx / dd * 14 * s * g, y: p.y + ddy / dd * 14 * s * g, g: g});
+      });
+      ctx.lineWidth = Math.max(1, s * 0.6);
+      for (i = 0; i < P.length; i++) {
+        for (j = i + 1; j < P.length; j++) {
+          var a = P[i], b = P[j], dist = Math.sqrt((a.x - b.x) * (a.x - b.x) + (a.y - b.y) * (a.y - b.y));
+          if (dist > D) continue;
+          var q = 1 - dist / D;
+          ctx.strokeStyle = rgba(q * q * (0.22 + 0.25 * (a.g + b.g)) * edge((a.x + b.x) / 2));
+          ctx.beginPath(); ctx.moveTo(a.x, a.y); ctx.lineTo(b.x, b.y); ctx.stroke();
+        }
+      }
+      P.forEach(function (p) { ctx.fillStyle = rgba((0.35 + 0.5 * p.g) * edge(p.x)); ctx.fillRect(p.x - s * 0.75, p.y - s * 0.75, s * 1.5, s * 1.5); });
+    }
+    function frame(ts) {
+      raf = 0;
+      if (!vis || d.hidden || !size()) return;
+      var t = ts / 1000, dt = last ? Math.min(0.05, t - last) : 0.016, act = ptr && ts - ptrAt < 2500;
+      last = t;
+      // Without a recent pointer the light wanders on a wide loop.
+      var tx = act ? ptr.x : W * (0.5 + 0.34 * Math.sin(t * 0.18)), ty = act ? ptr.y : H * (0.6 + 0.2 * Math.sin(t * 0.26 + 1.3));
+      if (!L) L = {x: tx, y: ty};
+      var e = 1 - Math.exp(-dt * (act ? 5 : 1.2));
+      L.x += (tx - L.x) * e; L.y += (ty - L.y) * e;
+      ctx.clearRect(0, 0, W, H);
+      draw(dt);
+      if (!still) raf = w.requestAnimationFrame(frame);
+    }
+    function kick() { if (!raf && vis && !d.hidden) { last = 0; raf = w.requestAnimationFrame(frame); } }
+    function point(e) {
+      if (still || !cv) return;
+      var r = cv.getBoundingClientRect();
+      if (e.pointerType !== 'mouse' && (e.clientY < r.top || e.clientY > r.bottom)) return;
+      ptr = {x: (e.clientX - r.left) * s, y: (e.clientY - r.top) * s}; ptrAt = w.performance.now();
+      kick();
+    }
+    w.addEventListener('pointermove', point, {passive: true});
+    w.addEventListener('pointerdown', point, {passive: true});
+    if ('IntersectionObserver' in w) {
+      var io = new IntersectionObserver(function (es) {
+        es.forEach(function (en) { en.target.fxOn = en.isIntersecting; });
+        vis = cvs.some(function (c) { return c.fxOn; });
+        kick();
+      });
+      cvs.forEach(function (c) { io.observe(c); });
+    } else { vis = true; }
+    d.addEventListener('visibilitychange', kick);
+    // Phones fire resize when the toolbar slides away on scroll: no reset here, size() handles real size changes.
+    w.addEventListener('resize', kick);
+    kick();
+  })();
 })();

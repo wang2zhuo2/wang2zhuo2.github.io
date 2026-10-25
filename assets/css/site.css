@@ -402,7 +402,7 @@ a.sv{display:block}
 .sl-p{left:23px;transform:scaleX(-1)}
 .sl-a[hidden]{display:none}
 /* Mobile header menu (matches the Wix drawer) */
-.hb{position:absolute;left:287px;top:8px;width:26px;height:26px;border:0;padding:0;margin:0;background:#fff;cursor:pointer;z-index:70;-webkit-tap-highlight-color:transparent}
+.hb{position:absolute;left:274px;top:8px;width:26px;height:26px;border:0;padding:0;margin:0;background:#fff;cursor:pointer;z-index:70;-webkit-tap-highlight-color:transparent}
 .hb i{position:absolute;left:0;height:2px;background:#000;border-radius:2px;transition:transform .25s ease,width .25s ease,top .25s ease}
 .hb i:nth-child(1){top:3px;width:13px}
 .hb i:nth-child(2){top:12px;width:26px}
@@ -579,6 +579,20 @@ a.sv{display:block}
 .M .xp-fig figcaption{margin-top:4px;font-size:10px}
 .M .xp-film{border-radius:6px}
 .M .xp-code{padding:12px;font-size:7.4px;line-height:1.55}
+/* Home hero: the name wordmark inline after "Hi, I am" (g_overrides.hero_name); the warm gradient drifts as before. */
+.hi{white-space:nowrap}
+.hi-name{display:inline-block;vertical-align:baseline;overflow:hidden;background:linear-gradient(110deg,#D44B32,#D9781F,#C59221,#E15C42,#D44B32) 0 50%/var(--hn-bg) 100% no-repeat;-webkit-mask:url(/assets/img/zonen-wordmark.png) 0 0/100% 100% no-repeat;mask:url(/assets/img/zonen-wordmark.png) 0 0/100% 100% no-repeat;animation:hi-name 7s linear infinite alternate}
+@keyframes hi-name{from{background-position:0 50%}to{background-position:var(--hn-travel) 50%}}
+.D .hi-name{width:96.61px;height:24.68px;margin-left:1.5px;--hn-bg:470.2px;--hn-travel:-313.5px}
+.M .hi-name{width:57.94px;height:14.8px;--hn-bg:282px;--hn-travel:-188px}
+@media (prefers-reduced-motion:reduce){.hi-name{animation:none}}
+.vh{position:absolute;width:1px;height:1px;margin:-1px;padding:0;border:0;overflow:hidden;clip:rect(0 0 0 0);clip-path:inset(50%);white-space:nowrap}
+/* Echo of Brain overview card: takes its text's height (g_overrides.echo_overview). */
+.eo{box-sizing:border-box}
+.eo-bar{position:absolute;left:0}
+/* Footer line network (site.js). */
+.ffx{pointer-events:none;overflow:hidden}
+.ffx canvas{display:block;width:100%;height:100%}
 
 .t0{font-family:"Poppins",sans-serif;font-weight:600;font-size:15px;font-style:normal;line-height:40px;letter-spacing:normal;color:rgb(210, 160, 110);text-align:end;white-space:nowrap;list-style-type:none;padding-left:10px;padding-right:10px}
 .t1{font-family:"Poppins",sans-serif;font-weight:600;font-size:15px;font-style:normal;line-height:40px;letter-spacing:normal;color:rgb(51, 51, 51);text-align:end;white-space:nowrap;list-style-type:none;padding-left:10px;padding-right:10px}

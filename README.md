@@ -8,12 +8,14 @@ Personal portfolio of Zonen Wang, served by GitHub Pages from this repository (`
 | --- | --- |
 | `index.html`, `about.html`, `photography.html` | Main pages |
 | `mesh.html`, `beyond.html`, `tteh.html`, `mr.html`, `brain.html`, `mars.html` | Project pages (served as `/mesh`, `/beyond`, …) |
+| `soft.html`, `kayak.html` | Other projects pages (`tools/g_other.py`) |
 | `assets/css/base.css` | Hand-written layout, menu, lightbox and slider styles |
 | `assets/css/site.css` | Generated: fonts + `base.css` + shared text styles |
-| `assets/js/site.js` | Scaling, lazy video, parallax, menus, lightbox, slider, chapter menu, analytics events |
+| `assets/js/site.js` | Scaling, lazy video, parallax, menus, lightbox, slider, chapter menu, analytics events, footer line network |
 | `assets/img`, `assets/media`, `assets/video` | Images (WebP), converted GIFs (MP4), videos (MP4) |
 | `assets/img/about` | Generated About images: evidence frames and project logo chips (`tools/g_about.py`) |
-| `assets/embed` | Custom HTML embeds (featured cards, name animation, footer) |
+| `assets/img/zonen-wordmark.png` | Mask for the gradient name after "Hi, I am" on home |
+| `assets/embed` | Custom HTML embeds (featured project cards, scroll hint) |
 | `404.html`, `robots.txt`, `sitemap.xml` | Standard site files |
 
 Each page contains two layouts that mirror the original Wix design exactly: a 1440 px desktop canvas (`.D`)
