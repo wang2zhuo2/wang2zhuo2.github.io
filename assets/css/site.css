@@ -593,6 +593,21 @@ a.sv{display:block}
 /* Footer line network (site.js). */
 .ffx{pointer-events:none;overflow:hidden}
 .ffx canvas{display:block;width:100%;height:100%}
+/* Mesh: Hand Cursor Concept Film after the Outcome, and its jump link under Fingertip cursor (tools/g_mesh.py). */
+.mesh-film-jump{display:inline-flex;align-items:center;gap:.45em;min-height:28px;margin-top:5px;color:#80542d;font:500 14px/1.4 Poppins,sans-serif;text-decoration:underline;text-underline-offset:.2em}
+.mesh-film-jump:hover{color:#603c20}
+.mesh-film-jump:focus-visible{outline:2px solid #80542d;outline-offset:3px}
+.mesh-film{display:grid;grid-template-columns:420px minmax(0,1fr);gap:40px;align-items:center;border-top:1px solid #d8d8d6;padding-top:48px;font-family:Poppins,sans-serif}
+.mesh-film-kicker{margin:0;color:#80542d;font-size:12px;line-height:1.5;font-weight:600;letter-spacing:.16em}
+.mesh-film h2{margin:9px 0 12px;color:#1c1e20;font-size:32px;line-height:1.24;font-weight:600;text-wrap:balance}
+.mesh-film-desc{max-width:365px;margin:0;color:#5a5a5a;font-size:17px;line-height:1.65}
+.mesh-film video{display:block;width:100%;max-width:504px;height:auto;aspect-ratio:1;object-fit:contain;justify-self:center;border-radius:14px;background:#202020}
+.M .mesh-film-jump{min-height:36px;margin-top:4px;font-size:13px}
+.M .mesh-film{grid-template-columns:minmax(0,1fr);gap:17px;padding-top:23px}
+.M .mesh-film-kicker{font-size:11px}
+.M .mesh-film h2{margin:6px 0 8px;font-size:21px}
+.M .mesh-film-desc{font-size:13.5px;line-height:1.6}
+.M .mesh-film video{border-radius:8px}
 
 .t0{font-family:"Poppins",sans-serif;font-weight:600;font-size:15px;font-style:normal;line-height:40px;letter-spacing:normal;color:rgb(210, 160, 110);text-align:end;white-space:nowrap;list-style-type:none;padding-left:10px;padding-right:10px}
 .t1{font-family:"Poppins",sans-serif;font-weight:600;font-size:15px;font-style:normal;line-height:40px;letter-spacing:normal;color:rgb(51, 51, 51);text-align:end;white-space:nowrap;list-style-type:none;padding-left:10px;padding-right:10px}

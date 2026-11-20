@@ -47,6 +47,17 @@
     if (vio) vio.observe(v); else v.src = v.dataset.src;
   });
 
+  // Looping film (Mesh concept film): play again when it ends, but only while it is on or near the screen. Replaying on
+  // 'ended' behaves the same in every engine; a WebKit build paused at the native loop point.
+  d.querySelectorAll('.mesh-film video').forEach(function (v) {
+    v.addEventListener('ended', function () {
+      var r = v.getBoundingClientRect();
+      if (!r.width || r.bottom <= -400 || r.top >= w.innerHeight + 400) return;
+      var p = v.play();
+      if (p && p.catch) p.catch(function (err) { if (!err || err.name !== 'AbortError') console.warn('Could not replay the concept film.', err); });
+    });
+  });
+
   // Lightbox (Vimeo showreel + photo gallery).
   var lb = d.querySelector('.lb'), media = lb && lb.querySelector('.lb-media'), gal = [], gi = 0;
   function open(html, isGal) {

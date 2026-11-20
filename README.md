@@ -14,6 +14,7 @@ Personal portfolio of Zonen Wang, served by GitHub Pages from this repository (`
 | `assets/js/site.js` | Scaling, lazy video, parallax, menus, lightbox, slider, chapter menu, analytics events, footer line network |
 | `assets/img`, `assets/media`, `assets/video` | Images (WebP), converted GIFs (MP4), videos (MP4) |
 | `assets/img/about` | Generated About images: evidence frames and project logo chips (`tools/g_about.py`) |
+| `assets/media/mesh` | Hand Cursor Concept Film and its poster for `/mesh` (`tools/g_mesh.py`) |
 | `assets/img/zonen-wordmark.png` | Mask for the gradient name after "Hi, I am" on home |
 | `assets/embed` | Custom HTML embeds (featured project cards, scroll hint) |
 | `404.html`, `robots.txt`, `sitemap.xml` | Standard site files |
